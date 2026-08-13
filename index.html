@@ -81,9 +81,7 @@
     .hero-meta { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(28, 26, 23, 0.7); margin-top: 1.5rem; }
 
     /* ——— GLOBAL SLOT LABEL ——— */
-    .slot-label {
-      display: none; /* HIDDEN — only for labeling uploads */
-    }
+    .slot-label { display: none; }
     .media-box {
       position: relative;
       overflow: hidden;
@@ -152,36 +150,84 @@
     .footnote { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(28, 26, 23, 0.04); font-size: 0.6rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(28, 26, 23, 0.5); text-align: left; }
 
     /* ——— MODAL ——— */
-    .modal-overlay { position: fixed; inset: 0; z-index: 999; background: rgba(242, 237, 230, 0.92); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; padding: 2rem; cursor: default; }
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(242, 237, 230, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      padding: 2rem;
+      cursor: default;
+    }
     .modal-overlay.active { opacity: 1; visibility: visible; }
-    .modal-content { position: relative; display: flex; align-items: center; justify-content: center; width: auto; height: auto; max-width: 95vw; max-height: 90vh; background: transparent; box-shadow: 0 40px 80px rgba(28, 26, 23, 0.08); transform: scale(0.92); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
+
+    .modal-content {
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+      width: auto; height: auto;
+      max-width: 95vw; max-height: 90vh;
+      background: transparent;
+      box-shadow: 0 40px 80px rgba(28, 26, 23, 0.08);
+      transform: scale(0.92);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
     .modal-overlay.active .modal-content { transform: scale(1); }
-    .modal-content .modal-body { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
-    .modal-content img { max-width: 95vw; max-height: 90vh; width: auto; height: auto; object-fit: contain; display: block; background: #e8e2d9; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04); }
-    
-    /* ——— CLOSE BUTTON (back arrow, top-left, outside photo) ——— */
+
+    .modal-content .modal-body {
+      display: flex; align-items: center; justify-content: center;
+      width: 100%; height: 100%;
+    }
+    .modal-content img {
+      max-width: 95vw; max-height: 90vh;
+      width: auto; height: auto;
+      object-fit: contain;
+      display: block;
+      background: #e8e2d9;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ——— CLOSE BUTTON (fixed top-left, outside photo) ——— */
     .modal-close {
-      position: absolute;
-      top: -3rem;
-      left: 0;
+      position: fixed;
+      top: 1.5rem;
+      left: 1.5rem;
+      z-index: 1001;
       background: none;
       border: none;
       font-size: 1.6rem;
       font-weight: 300;
       color: #1c1a17;
       cursor: pointer;
-      padding: 0.5rem 0.5rem 0.5rem 0;
+      padding: 0.5rem;
       line-height: 1;
       transition: opacity 0.3s;
       opacity: 0.6;
-      z-index: 1000;
     }
-    .modal-close:hover {
-      opacity: 1;
-    }
+    .modal-close:hover { opacity: 1; }
 
     /* ——— BACK‑TO‑TOP ——— */
-    .back-to-top { position: fixed; bottom: 2rem; right: 2rem; z-index: 90; width: 44px; height: 44px; border-radius: 50%; background: rgba(28, 26, 23, 0.06); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(28, 26, 23, 0.08); color: #1c1a17; font-size: 1.2rem; font-weight: 300; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.4s, transform 0.3s, background 0.3s; opacity: 0; transform: translateY(20px); pointer-events: none; padding: 0; line-height: 1; }
+    .back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: rgba(28, 26, 23, 0.06);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(28, 26, 23, 0.08);
+      color: #1c1a17;
+      font-size: 1.2rem;
+      font-weight: 300;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: opacity 0.4s, transform 0.3s, background 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      pointer-events: none;
+      padding: 0; line-height: 1;
+    }
     .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .back-to-top:hover { background: rgba(28, 26, 23, 0.12); transform: scale(1.05); }
 
@@ -196,7 +242,7 @@
       .info-section { flex-direction: column; gap: 2rem; }
       .music-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.2rem; }
       .modal-content img { max-width: 95vw; max-height: 85vh; }
-      .modal-close { top: -2.5rem; font-size: 1.4rem; }
+      .modal-close { top: 1rem; left: 1rem; font-size: 1.4rem; }
       .back-to-top { bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; font-size: 1.1rem; }
     }
     @media (max-width: 600px) {
@@ -208,7 +254,7 @@
       .hero-meta { font-size: 0.7rem; }
       .music-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
       .modal-content img { max-width: 98vw; max-height: 80vh; }
-      .modal-close { top: -2rem; font-size: 1.2rem; }
+      .modal-close { top: 0.8rem; left: 0.8rem; font-size: 1.2rem; }
       .back-to-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 1rem; }
     }
   </style>
@@ -244,7 +290,7 @@
       </div>
     </section>
 
-    <!-- ===== NOISE (poster + copy) ===== -->
+    <!-- ===== NOISE ===== -->
     <section>
       <div class="noise-block">
         <div class="noise-image media-box reveal-scale">
@@ -260,7 +306,7 @@
       </div>
     </section>
 
-    <!-- ===== INTERLUDE GRID (9 slots — all unique) ===== -->
+    <!-- ===== INTERLUDE GRID (UtX3FAd removed, replaced with duplicate 8cxKOCM) ===== -->
     <section>
       <div class="interlude-grid reveal">
         <div class="interlude-item media-box stagger-item">
@@ -279,7 +325,7 @@
           <img src="https://i.imgur.com/O6bsbkH.png" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/UtX3FAd.jpeg" alt="interlude" loading="lazy" />
+          <img src="https://i.imgur.com/8cxKOCM.jpeg" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/rZX071n.jpeg" alt="interlude" loading="lazy" />
@@ -371,6 +417,7 @@
     (function() {
       'use strict';
 
+      // ——— INTERSECTION OBSERVER ———
       const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .stagger-item');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -379,12 +426,14 @@
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
       revealElements.forEach(el => observer.observe(el));
 
+      // ——— STAGGER ———
       const staggerItems = document.querySelectorAll('.stagger-item');
       staggerItems.forEach((item, index) => {
         const delay = 0.06 * (index % 12);
         item.style.transitionDelay = delay + 's';
       });
 
+      // ——— HERO PARALLAX ———
       const heroTitle = document.getElementById('heroParallax');
       if (heroTitle) {
         let ticking = false;
@@ -401,13 +450,14 @@
         }, { passive: true });
       }
 
-      // external header links — no smooth scroll needed
+      // ——— SMOOTH NAV (external links only) ———
       document.querySelectorAll('.header-nav a').forEach(link => {
         link.addEventListener('click', function(e) {
-          // let them open normally
+          // external links open normally
         });
       });
 
+      // ——— BACK‑TO‑TOP ———
       const backToTop = document.getElementById('backToTop');
       window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
@@ -423,18 +473,25 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
+      // ——— UNIFIED MODAL (back arrow, fixed top-left) ———
       const modalOverlay = document.createElement('div');
       modalOverlay.className = 'modal-overlay';
       modalOverlay.innerHTML = `
         <div class="modal-content">
-          <button class="modal-close" aria-label="Close">←</button>
           <div class="modal-body"></div>
         </div>
       `;
       document.body.appendChild(modalOverlay);
 
+      // Create the close button as a separate fixed element
+      const closeBtn = document.createElement('button');
+      closeBtn.className = 'modal-close';
+      closeBtn.setAttribute('aria-label', 'Close');
+      closeBtn.textContent = '←';
+      document.body.appendChild(closeBtn);
+      closeBtn.style.display = 'none'; // hidden by default
+
       const modalBody = modalOverlay.querySelector('.modal-body');
-      const closeBtn = modalOverlay.querySelector('.modal-close');
 
       function openModal(el) {
         const img = el.querySelector('img');
@@ -449,11 +506,13 @@
           modalBody.appendChild(placeholder);
         }
         modalOverlay.classList.add('active');
+        closeBtn.style.display = 'block';
         document.body.style.overflow = 'hidden';
       }
 
       function closeModal() {
         modalOverlay.classList.remove('active');
+        closeBtn.style.display = 'none';
         document.body.style.overflow = '';
       }
 
@@ -470,6 +529,7 @@
         if (e.key === 'Escape') closeModal();
       });
 
+      // ——— ATTACH TO ALL MEDIA BOXES ———
       const mediaSelectors = [
         '.silence-object',
         '.noise-image',
@@ -485,7 +545,7 @@
         });
       });
 
-      console.log('simulasawala · final build ready.');
+      console.log('simulasawala · final build ready (back arrow fixed top-left, UtX3FAd removed).');
     })();
   </script>
 </body>
