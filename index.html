@@ -110,10 +110,10 @@
     .noise-copy .sub { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(28, 26, 23, 0.7); }
     .noise-copy .desc { margin-top: 2rem; font-size: 0.9rem; font-weight: 300; max-width: 28ch; color: rgba(28, 26, 23, 0.75); line-height: 1.6; }
 
-    /* ——— INTERLUDE GRID (9 slots) ——— */
+    /* ——— INTERLUDE GRID (8 boxes, 4 columns) ——— */
     .interlude-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1.2rem;
       margin: 6rem 0;
     }
@@ -236,7 +236,7 @@
       .header { padding: 1rem 1.5rem; }
       .main { padding: 0 1.5rem 3rem; }
       .noise-block { grid-template-columns: 1fr; gap: 2.5rem; }
-      .interlude-grid { gap: 1rem; }
+      .interlude-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .hero { min-height: 60vh; padding-bottom: 2rem; }
       .silence-block { min-height: 50vh; }
       .info-section { flex-direction: column; gap: 2rem; }
@@ -306,7 +306,7 @@
       </div>
     </section>
 
-    <!-- ===== INTERLUDE GRID (UtX3FAd removed, replaced with duplicate 8cxKOCM) ===== -->
+    <!-- ===== INTERLUDE GRID (8 boxes, 4 columns, no duplicates) ===== -->
     <section>
       <div class="interlude-grid reveal">
         <div class="interlude-item media-box stagger-item">
@@ -323,9 +323,6 @@
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/O6bsbkH.png" alt="interlude" loading="lazy" />
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/8cxKOCM.jpeg" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/rZX071n.jpeg" alt="interlude" loading="lazy" />
@@ -483,13 +480,12 @@
       `;
       document.body.appendChild(modalOverlay);
 
-      // Create the close button as a separate fixed element
       const closeBtn = document.createElement('button');
       closeBtn.className = 'modal-close';
       closeBtn.setAttribute('aria-label', 'Close');
       closeBtn.textContent = '←';
       document.body.appendChild(closeBtn);
-      closeBtn.style.display = 'none'; // hidden by default
+      closeBtn.style.display = 'none';
 
       const modalBody = modalOverlay.querySelector('.modal-body');
 
@@ -545,7 +541,7 @@
         });
       });
 
-      console.log('simulasawala · final build ready (back arrow fixed top-left, UtX3FAd removed).');
+      console.log('simulasawala · 8 interlude boxes, no duplicates, back arrow top-left fixed.');
     })();
   </script>
 </body>
