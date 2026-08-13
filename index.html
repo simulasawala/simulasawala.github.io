@@ -11,7 +11,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="#" />
   <meta property="og:image" content="#" />
-  <!-- Favicon (inline SVG) -->
+  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◼</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -990,9 +990,9 @@
       </div>
       <div class="info-col reveal">
         <span class="label">contact</span>
-        <a href="#">hello@simulasawala</a>
-        <a href="#">instagram</a>
-        <a href="#">soundcloud</a>
+        <a href="https://www.instagram.com/simulasawala/" target="_blank" rel="noopener noreferrer">instagram</a>
+        <a href="https://soundcloud.com/jinjiiiiii" target="_blank" rel="noopener noreferrer">soundcloud</a>
+        <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">spotify</a>
       </div>
     </section>
 
@@ -1063,7 +1063,6 @@
 
       // ——— BACK‑TO‑TOP ———
       const backToTop = document.getElementById('backToTop');
-      let lastScroll = 0;
       window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
         const heroHeight = document.querySelector('.hero').offsetHeight || 600;
@@ -1072,7 +1071,6 @@
         } else {
           backToTop.classList.remove('visible');
         }
-        lastScroll = currentScroll;
       }, { passive: true });
 
       backToTop.addEventListener('click', () => {
