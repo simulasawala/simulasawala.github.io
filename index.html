@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>simulasawala</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,800&display=swap" rel="stylesheet" />
+  <style>
+    /* ——— RESET & BASE ——— */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      background: #f6f3ef;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+      color: #1c1a17;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      padding-top: 4rem;
+    }
+
+    ::selection {
+      background: #1c1a17;
+      color: #f6f3ef;
+    }
+
+    /* ——— SCROLLBAR ——— */
+    ::-webkit-scrollbar {
+      width: 4px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1c1a17;
+      border-radius: 20px;
+    }
+
+    /* ——— HEADER ——— */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      text-transform: lowercase;
+      background: rgba(246, 243, 239, 0.7);
+      backdrop-filter: blur(12px) saturate(1.2);
+      -webkit-backdrop-filter: blur(12px) saturate(1.2);
+      border-bottom: 1px solid rgba(28, 26, 23, 0.04);
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+    }
+
+    .header-brand {
+      font-weight: 600;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      border-bottom: 1.5px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .header-brand:hover {
+      border-bottom-color: #1c1a17;
+    }
+
+    .header-nav {
+      display: flex;
+      gap: 1.6rem;
+      flex-wrap: wrap;
+    }
+
+    .header-nav a {
+      border-bottom: none;
+      transition: opacity 0.3s, color 0.3s;
+      color: rgba(28, 26, 23, 0.6);
+      font-weight: 400;
+      position: relative;
+    }
+    .header-nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 1.5px;
+      background: #d46a3a;
+      transition: width 0.3s ease;
+    }
+    .header-nav a:hover {
+      color: #1c1a17;
+      opacity: 1;
+    }
+    .header-nav a:hover::after {
+      width: 100%;
+    }
+
+    /* ——— MAIN ——— */
+    .main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2.5rem 4rem;
+    }
+
+    /* ——— REVEAL ——— */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .stagger-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ——— SECTION LABEL ——— */
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(28, 26, 23, 0.5);
+      margin-bottom: 2.5rem;
+      border-top: 1px solid rgba(28, 26, 23, 0.04);
+      padding-top: 2.5rem;
+    }
+    .section-label:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    /* ——— HERO ——— */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 4rem;
+      margin-bottom: 4rem;
+      position: relative;
+    }
+
+    .hero-title-wrap {
+      will-change: transform;
+      transition: transform 0.1s linear;
+    }
+
+    .hero-title {
+      font-size: clamp(4rem, 16vw, 11rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: #1c1a17;
+      overflow-wrap: break-word;
+      hyphens: auto;
+    }
+
+    .hero-meta {
+      font-size: 0.8rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(28, 26, 23, 0.5);
+      margin-top: 1.5rem;
+    }
+
+    /* ——— SILENCE (no label) ——— */
+    .silence-block {
+      min-height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 0;
+      position: relative;
+    }
+
+    .silence-object {
+      width: 160px;
+      height: 210px;
+      background: #e3ddd4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(28, 26, 23, 0.2);
+      overflow: hidden;
+      transition: box-shadow 0.4s ease;
+    }
+    .silence-object img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .silence-object:hover {
+      box-shadow: 0 20px 40px rgba(28, 26, 23, 0.04);
+    }
+
+    /* ——— NOISE ——— */
+    .noise-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      min-height: 60vh;
+      padding: 1rem 0;
+    }
+
+    .noise-image {
+      background: #d9d2c7;
+      aspect-ratio: 4/5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(28, 26, 23, 0.15);
+      overflow: hidden;
+      width: 100%;
+      cursor: pointer;
+    }
+    .noise-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .noise-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 0.5rem;
+    }
+
+    .noise-copy h2 {
+      font-size: clamp(3.5rem, 12vw, 7.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+
+    .noise-copy .sub {
+      font-size: 0.8rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(28, 26, 23, 0.5);
+    }
+
+    .noise-copy .desc {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      font-weight: 300;
+      max-width: 28ch;
+      color: rgba(28, 26, 23, 0.6);
+      line-height: 1.6;
+    }
+
+    /* ——— INTERLUDE ——— */
+    .interlude {
+      margin: 6rem 0;
+      width: 100%;
+      aspect-ratio: 21/9;
+      background: #d4ccc0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(28, 26, 23, 0.15);
+      overflow: hidden;
+    }
+    .interlude img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* ——— PHOTOGRAPHY & PLACES (3‑col 4:5) ——— */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .photo-item {
+      background: #e8e2d9;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+    }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
+    }
+
+    /* ——— ARCHIVE (broken grid) ——— */
+    .archive-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      grid-auto-rows: minmax(180px, auto);
+      gap: 1.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .archive-item {
+      background: #e8e2d9;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(28, 26, 23, 0.15);
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+      cursor: pointer;
+      aspect-ratio: auto;
+    }
+    .archive-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .archive-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
+      z-index: 2;
+    }
+
+    .span-wide {
+      grid-column: span 2;
+    }
+    .span-tall {
+      grid-row: span 2;
+    }
+    .span-feature {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+
+    /* ——— MUSIC ——— */
+    .music-section {
+      margin-top: 4rem;
+    }
+
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .music-item {
+      background: #e8e2d9;
+      aspect-ratio: 1/1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: rgba(28, 26, 23, 0.15);
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease;
+      cursor: pointer;
+    }
+    .music-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .music-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
+      z-index: 2;
+    }
+
+    .music-embed {
+      margin-top: 1.5rem;
+      padding: 2rem;
+      background: #e8e2d9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(28, 26, 23, 0.2);
+      border-radius: 4px;
+      min-height: 80px;
+    }
+    .music-embed a {
+      color: #1c1a17;
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(28, 26, 23, 0.2);
+      transition: border-color 0.3s;
+    }
+    .music-embed a:hover {
+      border-bottom-color: #1c1a17;
+    }
+
+    .music-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(28, 26, 23, 0.3);
+      margin-bottom: 1rem;
+      margin-top: 2.5rem;
+    }
+    .music-label:first-of-type {
+      margin-top: 0;
+    }
+
+    /* ——— FOOTER ——— */
+    .info-section {
+      margin-top: 6rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(28, 26, 23, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+
+    .info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .info-col .label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(28, 26, 23, 0.5);
+    }
+
+    .info-col p,
+    .info-col a {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #1c1a17;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+      line-height: 1.6;
+    }
+    .info-col a:hover {
+      border-bottom-color: #1c1a17;
+    }
+
+    .info-col .copy {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(28, 26, 23, 0.5);
+      max-width: 30ch;
+      line-height: 1.6;
+    }
+
+    .footnote {
+      margin-top: 4rem;
+      font-size: 0.6rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(28, 26, 23, 0.2);
+      text-align: left;
+      border-top: none;
+      padding-top: 0;
+    }
+
+    /* ——— MODAL (full‑screen, dynamic sizing) ——— */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(246, 243, 239, 0.92);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      padding: 2rem;
+      cursor: default;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      height: auto;
+      max-width: 95vw;
+      max-height: 90vh;
+      background: transparent;
+      box-shadow: 0 40px 80px rgba(28, 26, 23, 0.08);
+      transform: scale(0.92);
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+    .modal-overlay.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-content .modal-body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .modal-content img {
+      max-width: 95vw;
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      background: #e8e2d9;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .modal-content .placeholder-text {
+      padding: 3rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(28, 26, 23, 0.2);
+      background: #e8e2d9;
+      max-width: 90vw;
+      max-height: 80vh;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -3rem;
+      right: 0;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #1c1a17;
+      cursor: pointer;
+      padding: 0.5rem;
+      line-height: 1;
+      transition: opacity 0.3s;
+      opacity: 0.6;
+      z-index: 1000;
+    }
+    .modal-close:hover {
+      opacity: 1;
+    }
+
+    /* ——— RESPONSIVE ——— */
+    @media (max-width: 900px) {
+      .header {
+        padding: 1rem 1.5rem;
+      }
+      .main {
+        padding: 0 1.5rem 3rem;
+      }
+      .noise-block {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.2rem;
+      }
+      .archive-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+      }
+      .span-wide {
+        grid-column: span 1;
+      }
+      .span-feature {
+        grid-column: span 1;
+        grid-row: span 1;
+      }
+      .span-tall {
+        grid-row: span 1;
+      }
+      .hero {
+        min-height: 60vh;
+        padding-bottom: 2rem;
+      }
+      .silence-block {
+        min-height: 50vh;
+      }
+      .interlude {
+        aspect-ratio: 16/9;
+        margin: 4rem 0;
+      }
+      .info-section {
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .music-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 1.2rem;
+      }
+      .modal-content img {
+        max-width: 95vw;
+        max-height: 85vh;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header-nav {
+        gap: 1rem;
+        font-size: 0.7rem;
+      }
+      .photo-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .archive-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .hero-title {
+        font-size: clamp(3.2rem, 22vw, 5rem);
+      }
+      .silence-object {
+        width: 120px;
+        height: 160px;
+      }
+      .noise-copy h2 {
+        font-size: clamp(2.8rem, 15vw, 4.5rem);
+      }
+      .hero-meta {
+        font-size: 0.7rem;
+      }
+      .interlude {
+        aspect-ratio: 4/3;
+      }
+      .music-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.8rem;
+      }
+      .modal-content img {
+        max-width: 98vw;
+        max-height: 80vh;
+      }
+      .modal-close {
+        top: -2.5rem;
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <span class="header-brand">simulasawala</span>
+    <nav class="header-nav">
+      <a href="#hero">index</a>
+      <a href="#photography">photography</a>
+      <a href="#places">places</a>
+      <a href="#archive">archive</a>
+      <a href="#music">music</a>
+      <a href="#info">info</a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+      <div class="hero-title-wrap" id="heroParallax">
+        <h1 class="hero-title">simulasawala</h1>
+      </div>
+      <div class="hero-meta">bacolod / ongoing archive</div>
+    </section>
+
+    <!-- SILENCE — label removed -->
+    <section>
+      <div class="silence-block reveal-scale">
+        <div class="silence-object">
+          <!-- IMG: tiny photograph or object -->
+          photograph
+        </div>
+      </div>
+    </section>
+
+    <!-- NOISE -->
+    <section>
+      <div class="section-label reveal">noise</div>
+      <div class="noise-block">
+        <div class="noise-image reveal-scale">
+          <!-- IMG: full-bleed poster -->
+          poster
+        </div>
+        <div class="noise-copy reveal">
+          <h2>freetime</h2>
+          <div class="sub">poster / event / 2026</div>
+          <div class="desc">
+            art direction &amp; event graphics for a night of jazz, electronics, and independent sound.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTERLUDE -->
+    <section>
+      <div class="interlude reveal">
+        <!-- IMG: full-width city / space / fashion photograph -->
+        photography
+      </div>
+    </section>
+
+    <!-- PHOTOGRAPHY -->
+    <section id="photography">
+      <div class="section-label reveal">photography</div>
+      <div class="photo-grid">
+        <div class="photo-item stagger-item"><img src="#" alt="photograph" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="photograph" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="photograph" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="photograph" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="photograph" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="photograph" /></div>
+      </div>
+    </section>
+
+    <!-- PLACES -->
+    <section id="places">
+      <div class="section-label reveal">places</div>
+      <div class="photo-grid">
+        <div class="photo-item stagger-item"><img src="#" alt="place" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="place" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="place" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="place" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="place" /></div>
+        <div class="photo-item stagger-item"><img src="#" alt="place" /></div>
+      </div>
+    </section>
+
+    <!-- ARCHIVE -->
+    <section id="archive">
+      <div class="section-label reveal">archive</div>
+      <div class="archive-grid">
+        <div class="archive-item span-feature stagger-item"><img src="#" alt="feature" /></div>
+        <div class="archive-item span-tall stagger-item"><img src="#" alt="tall" /></div>
+        <div class="archive-item stagger-item"><img src="#" alt="square" /></div>
+        <div class="archive-item stagger-item"><img src="#" alt="square" /></div>
+        <div class="archive-item span-wide stagger-item"><img src="#" alt="wide" /></div>
+        <div class="archive-item stagger-item"><img src="#" alt="square" /></div>
+        <div class="archive-item stagger-item"><img src="#" alt="square" /></div>
+        <div class="archive-item span-tall stagger-item"><img src="#" alt="tall" /></div>
+        <div class="archive-item stagger-item"><img src="#" alt="square" /></div>
+        <div class="archive-item span-wide stagger-item"><img src="#" alt="wide" /></div>
+      </div>
+    </section>
+
+    <!-- MUSIC -->
+    <section id="music" class="music-section">
+      <div class="section-label reveal">music</div>
+
+      <!-- Spotify -->
+      <div class="music-embed reveal">
+        <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">
+          listen on spotify →
+        </a>
+      </div>
+
+      <div class="music-label">albums</div>
+      <div class="music-grid">
+        <div class="music-item stagger-item"><img src="#" alt="album" /></div>
+        <div class="music-item stagger-item"><img src="#" alt="album" /></div>
+        <div class="music-item stagger-item"><img src="#" alt="album" /></div>
+        <div class="music-item stagger-item"><img src="#" alt="album" /></div>
+      </div>
+
+      <!-- SoundCloud -->
+      <div class="music-label">soundcloud</div>
+      <div class="music-embed reveal">
+        <a href="https://soundcloud.com/jinjiiiiii" target="_blank" rel="noopener noreferrer">
+          soundcloud.com/jinjiiiiii →
+        </a>
+      </div>
+      <div class="music-grid" style="margin-top:1.5rem;">
+        <div class="music-item stagger-item"><img src="#" alt="track" /></div>
+        <div class="music-item stagger-item"><img src="#" alt="track" /></div>
+        <div class="music-item stagger-item"><img src="#" alt="track" /></div>
+        <div class="music-item stagger-item"><img src="#" alt="track" /></div>
+      </div>
+    </section>
+
+    <!-- INFO -->
+    <section id="info" class="info-section">
+      <div class="info-col reveal">
+        <span class="label">about</span>
+        <p class="copy">simulasawala is the ongoing archive of graphics, photographs, spaces, and music.</p>
+        <p class="copy" style="margin-top:0.2rem;">bacolod.</p>
+      </div>
+      <div class="info-col reveal">
+        <span class="label">contact</span>
+        <a href="#">hello@simulasawala</a>
+        <a href="#">instagram</a>
+        <a href="#">soundcloud</a>
+      </div>
+    </section>
+
+    <div class="footnote">html · css · js · inter · warm white · bacolod</div>
+
+  </main>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ——— INTERSECTION OBSERVER ———
+      const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .stagger-item');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -40px 0px'
+      });
+      revealElements.forEach(el => observer.observe(el));
+
+      // ——— STAGGER ———
+      const staggerItems = document.querySelectorAll('.stagger-item');
+      staggerItems.forEach((item, index) => {
+        const delay = 0.06 * (index % 12);
+        item.style.transitionDelay = delay + 's';
+      });
+
+      // ——— HERO PARALLAX ———
+      const heroTitle = document.getElementById('heroParallax');
+      if (heroTitle) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const scrolled = window.pageYOffset || document.documentElement.scrollTop;
+              const offset = Math.min(scrolled * 0.15, window.innerHeight * 0.4);
+              heroTitle.style.transform = `translateY(${offset * 0.4}px)`;
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+      // ——— SMOOTH NAV ———
+      document.querySelectorAll('.header-nav a').forEach(link => {
+        link.addEventListener('click', function(e) {
+          const targetId = this.getAttribute('href');
+          if (targetId && targetId.startsWith('#')) {
+            const targetEl = document.querySelector(targetId);
+            if (targetEl) {
+              e.preventDefault();
+              const headerHeight = document.querySelector('.header').offsetHeight || 60;
+              const top = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
+              window.scrollTo({ top, behavior: 'smooth' });
+            }
+          }
+        });
+      });
+
+      // ——— UNIFIED MODAL ———
+      const modalOverlay = document.createElement('div');
+      modalOverlay.className = 'modal-overlay';
+      modalOverlay.innerHTML = `
+        <div class="modal-content">
+          <button class="modal-close" aria-label="Close">✕</button>
+          <div class="modal-body"></div>
+        </div>
+      `;
+      document.body.appendChild(modalOverlay);
+
+      const modalBody = modalOverlay.querySelector('.modal-body');
+      const closeBtn = modalOverlay.querySelector('.modal-close');
+
+      function openModal(el) {
+        const img = el.querySelector('img');
+        modalBody.innerHTML = '';
+        if (img && img.src && img.src !== '#') {
+          const clone = img.cloneNode(true);
+          modalBody.appendChild(clone);
+        } else {
+          const placeholder = document.createElement('div');
+          placeholder.className = 'placeholder-text';
+          placeholder.textContent = el.textContent.trim() || 'image';
+          modalBody.appendChild(placeholder);
+        }
+        modalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeModal() {
+        modalOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeModal();
+      });
+
+      modalOverlay.addEventListener('click', (e) => {
+        if (e.target === modalOverlay) closeModal();
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+
+      // Attach to all clickable media
+      const mediaSelectors = [
+        '.photo-item',
+        '.place-item',
+        '.archive-item',
+        '.noise-image',
+        '.music-item'
+      ];
+
+      document.querySelectorAll(mediaSelectors.join(',')).forEach(el => {
+        el.style.cursor = 'pointer';
+        el.addEventListener('click', (e) => {
+          e.stopPropagation();
+          openModal(el);
+        });
+      });
+
+      console.log('simulasawala · editorial frame alive.');
+    })();
+  </script>
+</body>
+</html>
