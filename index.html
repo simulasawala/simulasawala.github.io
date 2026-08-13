@@ -29,6 +29,7 @@
       padding-top: 4rem;
       position: relative;
     }
+
     /* ——— PAPER TEXTURE OVERLAY ——— */
     body::before {
       content: '';
@@ -155,34 +156,13 @@
     .noise-copy .sub { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(28, 26, 23, 0.7); }
     .noise-copy .desc { margin-top: 2rem; font-size: 0.9rem; font-weight: 300; max-width: 28ch; color: rgba(28, 26, 23, 0.75); line-height: 1.6; }
 
-    /* ——— INTERLUDE MASONRY — 3 columns ——— */
-    .interlude-section { margin: 6rem 0 2rem; }
-    .interlude-header {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 1rem 2rem;
-      margin-bottom: 2.5rem;
-      border-bottom: 1px solid rgba(28, 26, 23, 0.04);
-      padding-bottom: 1rem;
-    }
-    .interlude-header .label {
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: rgba(28, 26, 23, 0.5);
-    }
-    .interlude-header .label span {
-      font-weight: 400;
-      color: rgba(28, 26, 23, 0.3);
-      margin-left: 0.5rem;
-    }
+    /* ——— INTERLUDE — NO TITLE, FIXED SHUFFLED ORDER ——— */
+    .interlude-section { margin: 4rem 0 2rem; }
 
     .interlude-grid {
       column-count: 3;
       column-gap: 1.5rem;
-      margin: 0 0 1rem;
+      margin: 0;
     }
     .interlude-item {
       break-inside: avoid;
@@ -429,12 +409,127 @@
       </div>
     </section>
 
-    <!-- INTERLUDE — 38 images, one grid -->
+    <!-- ===== INTERLUDE — FIXED SHUFFLED ORDER, NO TITLE ===== -->
     <section class="interlude-section">
-      <div class="interlude-header reveal">
-        <div class="label">interlude <span>— 38 fragments</span></div>
+      <div class="interlude-grid reveal" id="interludeGrid">
+
+        <!-- Shuffled order (fixed, one-time) -->
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/5AiMuK4.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/VwXhlec.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/7GG4BD2.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/CLaLLCe.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/jEI8gsI.png" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/0O0wbKU.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/QPdEfpz.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/4xIHRHt.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/rZX071n.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/ZTtbxh0.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/AT4OeV7.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/f7C7Quf.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/JHfvHaB.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/R1ZlM5h.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/uVTLNk7.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/0vL7gTt.png" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/KTAy7in.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/7orJd8s.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/05YPW29.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/8cxKOCM.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/zc7MRRi.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/gpmORW9.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/nnIYO4X.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/t2KyLJs.png" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/K82FwaX.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/BY2pxR9.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/yp37yE4.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/oCHLzTd.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/b39HrO6.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/RiD8JeE.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/VjUJOf9.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/FC1q4Cs.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/XRJBVOJ.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/NeDfUdm.png" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/fMfNMaD.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/ymIPtSm.png" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/NTmmyKb.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/3sjpRVI.jpeg" alt="interlude" loading="lazy" />
+        </div>
+
       </div>
-      <div id="interludeGrid" class="interlude-grid reveal"></div>
     </section>
 
     <!-- MUSIC -->
@@ -537,93 +632,21 @@
     (function() {
       'use strict';
 
-      // ——— ALL 38 INTERLUDE IMAGES ———
-      const allImages = [
-        'https://i.imgur.com/0vL7gTt.png',
-        'https://i.imgur.com/8cxKOCM.jpeg',
-        'https://i.imgur.com/5AiMuK4.jpeg',
-        'https://i.imgur.com/JHfvHaB.jpeg',
-        'https://i.imgur.com/jEI8gsI.png',
-        'https://i.imgur.com/rZX071n.jpeg',
-        'https://i.imgur.com/b39HrO6.jpeg',
-        'https://i.imgur.com/7GG4BD2.jpeg',
-        'https://i.imgur.com/VwXhlec.jpeg',
-        'https://i.imgur.com/AT4OeV7.jpeg',
-        'https://i.imgur.com/R1ZlM5h.jpeg',
-        'https://i.imgur.com/zc7MRRi.jpeg',
-        'https://i.imgur.com/CLaLLCe.jpeg',
-        'https://i.imgur.com/t2KyLJs.png',
-        'https://i.imgur.com/QPdEfpz.jpeg',
-        'https://i.imgur.com/FC1q4Cs.jpeg',
-        'https://i.imgur.com/fMfNMaD.jpeg',
-        'https://i.imgur.com/KTAy7in.jpeg',
-        'https://i.imgur.com/yp37yE4.jpeg',
-        'https://i.imgur.com/0O0wbKU.jpeg',
-        'https://i.imgur.com/7orJd8s.jpeg',
-        'https://i.imgur.com/K82FwaX.jpeg',
-        'https://i.imgur.com/RiD8JeE.jpeg',
-        'https://i.imgur.com/oCHLzTd.jpeg',
-        'https://i.imgur.com/NTmmyKb.jpeg',
-        'https://i.imgur.com/XRJBVOJ.jpeg',
-        'https://i.imgur.com/05YPW29.jpeg',
-        'https://i.imgur.com/NeDfUdm.png',
-        'https://i.imgur.com/f7C7Quf.jpeg',
-        'https://i.imgur.com/gpmORW9.jpeg',
-        'https://i.imgur.com/VjUJOf9.jpeg',
-        'https://i.imgur.com/uVTLNk7.jpeg',
-        'https://i.imgur.com/ymIPtSm.png',
-        'https://i.imgur.com/ZTtbxh0.jpeg',
-        'https://i.imgur.com/nnIYO4X.jpeg',
-        'https://i.imgur.com/BY2pxR9.jpeg',
-        'https://i.imgur.com/4xIHRHt.jpeg',
-        'https://i.imgur.com/3sjpRVI.jpeg'
-      ];
-
-      // ——— SHUFFLE ———
-      function shuffle(arr) {
-        const a = [...arr];
-        for (let i = a.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [a[i], a[j]] = [a[j], a[i]];
-        }
-        return a;
-      }
-
-      // ——— RENDER ———
-      const container = document.getElementById('interludeGrid');
-      const shuffled = shuffle(allImages);
-      const fragment = document.createDocumentFragment();
-
-      shuffled.forEach((url) => {
-        const div = document.createElement('div');
-        div.className = 'interlude-item media-box stagger-item';
-        const img = document.createElement('img');
-        img.src = url;
-        img.loading = 'lazy';
-        img.alt = 'interlude';
-        div.appendChild(img);
-        fragment.appendChild(div);
-      });
-
-      container.appendChild(fragment);
-
-      // Stagger
-      const items = container.querySelectorAll('.stagger-item');
-      items.forEach((item, index) => {
-        const delay = 0.04 * (index % 16);
-        item.style.transitionDelay = delay + 's';
-        void item.offsetWidth;
-        item.classList.add('visible');
-      });
-
-      // ——— GLOBAL REVEAL ———
-      const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .stagger-item:not(.interlude-item)');
+      // ——— GLOBAL REVEAL OBSERVER ———
+      const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .stagger-item');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add('visible');
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
       revealElements.forEach(el => observer.observe(el));
+
+      // ——— STAGGER DELAYS ———
+      const staggerItems = document.querySelectorAll('.stagger-item');
+      staggerItems.forEach((item, index) => {
+        const delay = 0.04 * (index % 16);
+        item.style.transitionDelay = delay + 's';
+      });
 
       // ——— HERO PARALLAX ———
       const heroTitle = document.getElementById('heroParallax');
@@ -711,11 +734,7 @@
       }
 
       attachModal();
-
-      const mo = new MutationObserver(attachModal);
-      mo.observe(container, { childList: true, subtree: true });
-
-      console.log('simulasawala · warm paper texture added. 38 images, auto-shuffled.');
+      console.log('simulasawala · interlude: fixed shuffled order, no title, mobile-ready.');
     })();
   </script>
 </body>
