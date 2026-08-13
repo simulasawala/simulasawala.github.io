@@ -162,22 +162,6 @@
       scroll-snap-stop: normal;
     }
 
-    /* ——— SECTION LABEL ——— */
-    .section-label {
-      font-size: 0.65rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: rgba(28, 26, 23, 0.7);
-      margin-bottom: 2.5rem;
-      border-top: 1px solid rgba(28, 26, 23, 0.04);
-      padding-top: 2.5rem;
-    }
-    .section-label:first-of-type {
-      border-top: none;
-      padding-top: 0;
-    }
-
     /* ——— HERO ——— */
     .hero {
       min-height: 80vh;
@@ -240,7 +224,7 @@
       box-shadow: 0 20px 40px rgba(28, 26, 23, 0.04);
     }
 
-    /* ——— NOISE ——— */
+    /* ——— NOISE (no label) ——— */
     .noise-block {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -315,104 +299,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-    }
-
-    /* ——— PHOTOGRAPHY (tight) ——— */
-    .photo-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      margin-top: 0.5rem;
-    }
-
-    .photo-item {
-      background: #e8e2d9;
-      aspect-ratio: 4/5;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
-    }
-    .photo-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .photo-item:hover {
-      transform: scale(1.04);
-      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
-      background: rgba(212, 106, 58, 0.04);
-    }
-
-    /* ——— PLACES (loose) ——— */
-    .places-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.4rem;
-      margin-top: 0.5rem;
-    }
-
-    .place-item {
-      background: #e8e2d9;
-      aspect-ratio: 4/5;
-      overflow: hidden;
-      cursor: pointer;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
-    }
-    .place-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .place-item:hover {
-      transform: scale(1.04);
-      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
-      background: rgba(212, 106, 58, 0.04);
-    }
-
-    /* ——— ARCHIVE ——— */
-    .archive-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.4fr 1fr;
-      grid-auto-rows: minmax(180px, auto);
-      gap: 1.8rem;
-      margin-top: 0.5rem;
-    }
-
-    .archive-item {
-      background: #e8e2d9;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
-      cursor: pointer;
-      aspect-ratio: auto;
-    }
-    .archive-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .archive-item:hover {
-      transform: scale(1.04);
-      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
-      z-index: 2;
-      background: rgba(212, 106, 58, 0.04);
-    }
-
-    .span-wide {
-      grid-column: span 2;
-    }
-    .span-tall {
-      grid-row: span 2;
-    }
-    .span-feature {
-      grid-column: span 2;
-      grid-row: span 2;
     }
 
     /* ——— MUSIC ——— */
@@ -690,27 +576,6 @@
         grid-template-columns: 1fr;
         gap: 2.5rem;
       }
-      .photo-grid, .places-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.2rem;
-      }
-      .places-grid {
-        gap: 1.8rem;
-      }
-      .archive-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 1.2rem;
-      }
-      .span-wide {
-        grid-column: span 1;
-      }
-      .span-feature {
-        grid-column: span 1;
-        grid-row: span 1;
-      }
-      .span-tall {
-        grid-row: span 1;
-      }
       .hero {
         min-height: 60vh;
         padding-bottom: 2rem;
@@ -754,17 +619,6 @@
       .header-nav {
         gap: 1rem;
         font-size: 0.7rem;
-      }
-      .photo-grid, .places-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.8rem;
-      }
-      .places-grid {
-        gap: 1.2rem;
-      }
-      .archive-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 0.8rem;
       }
       .hero-title {
         font-size: clamp(3.2rem, 22vw, 5rem);
@@ -814,11 +668,7 @@
     <span class="header-brand">simulasawala</span>
     <nav class="header-nav">
       <a href="#hero">index</a>
-      <a href="#photography">photography</a>
-      <a href="#places">places</a>
-      <a href="#archive">archive</a>
       <a href="#music">music</a>
-      <a href="#info">info</a>
     </nav>
   </header>
 
@@ -833,21 +683,20 @@
       <div class="hero-meta">bacolod / ongoing archive</div>
     </section>
 
-    <!-- SILENCE — now uses img tag -->
+    <!-- SILENCE -->
     <section>
       <div class="silence-block reveal-scale">
         <div class="silence-object">
-          <img src="#" alt="photograph" loading="lazy" />
+          <img src="images/silence.jpg" alt="silence" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- NOISE — image now uses img tag -->
+    <!-- NOISE (label removed) -->
     <section>
-      <div class="section-label reveal">noise</div>
       <div class="noise-block">
         <div class="noise-image reveal-scale">
-          <img src="#" alt="poster" loading="lazy" />
+          <img src="images/poster.jpg" alt="poster" loading="lazy" />
         </div>
         <div class="noise-copy reveal">
           <h2>freetime</h2>
@@ -859,60 +708,16 @@
       </div>
     </section>
 
-    <!-- INTERLUDE — now uses img tag -->
+    <!-- INTERLUDE -->
     <section>
       <div class="interlude reveal">
-        <img src="#" alt="photography" loading="lazy" />
-      </div>
-    </section>
-
-    <!-- PHOTOGRAPHY -->
-    <section id="photography">
-      <div class="section-label reveal">photography</div>
-      <div class="photo-grid">
-        <div class="photo-item stagger-item"><img src="#" alt="photograph" loading="lazy" /></div>
-        <div class="photo-item stagger-item"><img src="#" alt="photograph" loading="lazy" /></div>
-        <div class="photo-item stagger-item"><img src="#" alt="photograph" loading="lazy" /></div>
-        <div class="photo-item stagger-item"><img src="#" alt="photograph" loading="lazy" /></div>
-        <div class="photo-item stagger-item"><img src="#" alt="photograph" loading="lazy" /></div>
-        <div class="photo-item stagger-item"><img src="#" alt="photograph" loading="lazy" /></div>
-      </div>
-    </section>
-
-    <!-- PLACES -->
-    <section id="places">
-      <div class="section-label reveal">places</div>
-      <div class="places-grid">
-        <div class="place-item stagger-item"><img src="#" alt="place" loading="lazy" /></div>
-        <div class="place-item stagger-item"><img src="#" alt="place" loading="lazy" /></div>
-        <div class="place-item stagger-item"><img src="#" alt="place" loading="lazy" /></div>
-        <div class="place-item stagger-item"><img src="#" alt="place" loading="lazy" /></div>
-        <div class="place-item stagger-item"><img src="#" alt="place" loading="lazy" /></div>
-        <div class="place-item stagger-item"><img src="#" alt="place" loading="lazy" /></div>
-      </div>
-    </section>
-
-    <!-- ARCHIVE -->
-    <section id="archive">
-      <div class="section-label reveal">archive</div>
-      <div class="archive-grid">
-        <div class="archive-item span-feature stagger-item"><img src="#" alt="feature" loading="lazy" /></div>
-        <div class="archive-item span-tall stagger-item"><img src="#" alt="tall" loading="lazy" /></div>
-        <div class="archive-item stagger-item"><img src="#" alt="square" loading="lazy" /></div>
-        <div class="archive-item stagger-item"><img src="#" alt="square" loading="lazy" /></div>
-        <div class="archive-item span-wide stagger-item"><img src="#" alt="wide" loading="lazy" /></div>
-        <div class="archive-item stagger-item"><img src="#" alt="square" loading="lazy" /></div>
-        <div class="archive-item stagger-item"><img src="#" alt="square" loading="lazy" /></div>
-        <div class="archive-item span-tall stagger-item"><img src="#" alt="tall" loading="lazy" /></div>
-        <div class="archive-item stagger-item"><img src="#" alt="square" loading="lazy" /></div>
-        <div class="archive-item span-wide stagger-item"><img src="#" alt="wide" loading="lazy" /></div>
+        <img src="images/interlude.jpg" alt="interlude" loading="lazy" />
       </div>
     </section>
 
     <!-- MUSIC -->
     <section id="music" class="music-section">
-      <div class="section-label reveal">music</div>
-
+      <!-- Removed section-label "music" for a cleaner/abstract feel, but keeping the content -->
       <div class="music-embed reveal">
         <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">
           listen on spotify →
@@ -921,10 +726,10 @@
 
       <div class="music-label">albums</div>
       <div class="music-grid">
-        <div class="music-item stagger-item"><img src="#" alt="album" loading="lazy" /></div>
-        <div class="music-item stagger-item"><img src="#" alt="album" loading="lazy" /></div>
-        <div class="music-item stagger-item"><img src="#" alt="album" loading="lazy" /></div>
-        <div class="music-item stagger-item"><img src="#" alt="album" loading="lazy" /></div>
+        <div class="music-item stagger-item"><img src="images/album1.jpg" alt="album" loading="lazy" /></div>
+        <div class="music-item stagger-item"><img src="images/album2.jpg" alt="album" loading="lazy" /></div>
+        <div class="music-item stagger-item"><img src="images/album3.jpg" alt="album" loading="lazy" /></div>
+        <div class="music-item stagger-item"><img src="images/album4.jpg" alt="album" loading="lazy" /></div>
       </div>
 
       <div class="music-label">soundcloud</div>
@@ -934,10 +739,10 @@
         </a>
       </div>
       <div class="music-grid" style="margin-top:1.5rem;">
-        <div class="music-item stagger-item"><img src="#" alt="track" loading="lazy" /></div>
-        <div class="music-item stagger-item"><img src="#" alt="track" loading="lazy" /></div>
-        <div class="music-item stagger-item"><img src="#" alt="track" loading="lazy" /></div>
-        <div class="music-item stagger-item"><img src="#" alt="track" loading="lazy" /></div>
+        <div class="music-item stagger-item"><img src="images/track1.jpg" alt="track" loading="lazy" /></div>
+        <div class="music-item stagger-item"><img src="images/track2.jpg" alt="track" loading="lazy" /></div>
+        <div class="music-item stagger-item"><img src="images/track3.jpg" alt="track" loading="lazy" /></div>
+        <div class="music-item stagger-item"><img src="images/track4.jpg" alt="track" loading="lazy" /></div>
       </div>
     </section>
 
@@ -1087,9 +892,7 @@
 
       // Attach to all clickable media
       const mediaSelectors = [
-        '.photo-item',
-        '.place-item',
-        '.archive-item',
+        '.silence-object',
         '.noise-image',
         '.music-item'
       ];
@@ -1102,7 +905,7 @@
         });
       });
 
-      console.log('simulasawala · editorial frame alive.');
+      console.log('simulasawala · abstract frame alive.');
     })();
   </script>
 </body>
