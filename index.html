@@ -1,11 +1,3 @@
-Understood. Here's the final HTML with all changes applied:
-
-- **Silence block redesigned** — now a 2‑column spread above the poster. Left: the silence image (larger, 4:5), Right: an **About** section with the text you provided.
-- **Interlude images** — replaced the 4 specified PNGs with the new ones.
-- **Close button** — remains a `←` arrow in the top‑left corner (fixed position, outside the photo).
-- **Labels** — still hidden.
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,11 +144,6 @@ Understood. Here's the final HTML with all changes applied:
       max-width: 30ch;
       color: #1c1a17;
       margin-bottom: 1rem;
-    }
-    .about-location {
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: rgba(28, 26, 23, 0.5);
     }
 
     /* ——— NOISE ——— */
@@ -366,7 +353,6 @@ Understood. Here's the final HTML with all changes applied:
       .noise-copy h2 { font-size: clamp(2.8rem, 15vw, 4.5rem); }
       .hero-meta { font-size: 0.7rem; }
       .about-description { font-size: 1rem; }
-      .about-location { font-size: 1rem; }
       .music-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
       .modal-content img { max-width: 98vw; max-height: 80vh; }
       .modal-close { top: 0.8rem; left: 0.8rem; font-size: 1.2rem; }
@@ -396,7 +382,7 @@ Understood. Here's the final HTML with all changes applied:
       <div class="hero-meta">bacolod / ongoing archive</div>
     </section>
 
-    <!-- ===== SILENCE + ABOUT (new spread) ===== -->
+    <!-- ===== SILENCE + ABOUT (bacolod removed) ===== -->
     <section>
       <div class="silence-about-block reveal">
         <div class="silence-about-image media-box reveal-scale">
@@ -405,7 +391,6 @@ Understood. Here's the final HTML with all changes applied:
         <div class="silence-about-text">
           <div class="about-label">about</div>
           <p class="about-description">simulasawala is an ongoing archive of graphics, photographs, spaces, and music.</p>
-          <p class="about-location">bacolod.</p>
         </div>
       </div>
     </section>
@@ -490,6 +475,9 @@ Understood. Here's the final HTML with all changes applied:
           soundcloud.com/jinjiiiiii →
         </a>
       </div>
+
+      <!-- "tracks" label added here -->
+      <div class="music-label">tracks</div>
       <div class="music-grid" style="margin-top:1.5rem;">
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/tMSKR0c.jpeg" alt="track" loading="lazy" />
@@ -654,9 +642,8 @@ Understood. Here's the final HTML with all changes applied:
         });
       });
 
-      console.log('simulasawala · final build: silence + about spread, updated interlude images.');
+      console.log('simulasawala · final build: about cleaned, tracks label added.');
     })();
   </script>
 </body>
 </html>
-```
