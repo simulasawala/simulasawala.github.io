@@ -10,7 +10,8 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="#" />
   <meta property="og:image" content="#" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◼</text></svg>" />
+  <!-- Favicon: capital S -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='sans-serif' font-weight='bold'>S</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -81,21 +82,7 @@
 
     /* ——— GLOBAL SLOT LABEL ——— */
     .slot-label {
-      position: absolute;
-      bottom: 0.8rem;
-      left: 0.8rem;
-      font-size: 0.55rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(28, 26, 23, 0.25);
-      background: rgba(242, 237, 230, 0.4);
-      backdrop-filter: blur(4px);
-      padding: 0.15rem 0.6rem;
-      border-radius: 2px;
-      pointer-events: none;
-      transition: opacity 0.3s;
-      font-weight: 400;
-      z-index: 2;
+      display: none; /* HIDDEN — only for labeling uploads */
     }
     .media-box {
       position: relative;
@@ -171,8 +158,27 @@
     .modal-overlay.active .modal-content { transform: scale(1); }
     .modal-content .modal-body { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
     .modal-content img { max-width: 95vw; max-height: 90vh; width: auto; height: auto; object-fit: contain; display: block; background: #e8e2d9; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04); }
-    .modal-close { position: absolute; bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; border-radius: 50%; background: rgba(28, 26, 23, 0.06); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(28, 26, 23, 0.08); font-size: 1.2rem; font-weight: 300; color: #1c1a17; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.3s, transform 0.2s; z-index: 1000; line-height: 1; padding: 0; }
-    .modal-close:hover { background: rgba(28, 26, 23, 0.12); transform: scale(1.05); }
+    
+    /* ——— CLOSE BUTTON (back arrow, top-left, outside photo) ——— */
+    .modal-close {
+      position: absolute;
+      top: -3rem;
+      left: 0;
+      background: none;
+      border: none;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: #1c1a17;
+      cursor: pointer;
+      padding: 0.5rem 0.5rem 0.5rem 0;
+      line-height: 1;
+      transition: opacity 0.3s;
+      opacity: 0.6;
+      z-index: 1000;
+    }
+    .modal-close:hover {
+      opacity: 1;
+    }
 
     /* ——— BACK‑TO‑TOP ——— */
     .back-to-top { position: fixed; bottom: 2rem; right: 2rem; z-index: 90; width: 44px; height: 44px; border-radius: 50%; background: rgba(28, 26, 23, 0.06); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(28, 26, 23, 0.08); color: #1c1a17; font-size: 1.2rem; font-weight: 300; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.4s, transform 0.3s, background 0.3s; opacity: 0; transform: translateY(20px); pointer-events: none; padding: 0; line-height: 1; }
@@ -190,7 +196,7 @@
       .info-section { flex-direction: column; gap: 2rem; }
       .music-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.2rem; }
       .modal-content img { max-width: 95vw; max-height: 85vh; }
-      .modal-close { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 1rem; }
+      .modal-close { top: -2.5rem; font-size: 1.4rem; }
       .back-to-top { bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; font-size: 1.1rem; }
     }
     @media (max-width: 600px) {
@@ -202,7 +208,7 @@
       .hero-meta { font-size: 0.7rem; }
       .music-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
       .modal-content img { max-width: 98vw; max-height: 80vh; }
-      .modal-close { bottom: 0.8rem; right: 0.8rem; width: 32px; height: 32px; font-size: 0.9rem; }
+      .modal-close { top: -2rem; font-size: 1.2rem; }
       .back-to-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 1rem; }
     }
   </style>
@@ -213,8 +219,9 @@
   <header class="header" id="header">
     <span class="header-brand">simulasawala</span>
     <nav class="header-nav">
-      <a href="#hero">index</a>
-      <a href="#music">music</a>
+      <a href="https://www.instagram.com/simulasawala/" target="_blank" rel="noopener noreferrer">instagram</a>
+      <a href="https://soundcloud.com/jinjiiiiii" target="_blank" rel="noopener noreferrer">soundcloud</a>
+      <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">spotify</a>
     </nav>
   </header>
 
@@ -233,7 +240,6 @@
       <div class="silence-block reveal-scale">
         <div class="silence-object media-box">
           <img src="https://i.imgur.com/SPUfHSU.jpeg" alt="silence" loading="lazy" />
-          <span class="slot-label">silence</span>
         </div>
       </div>
     </section>
@@ -243,7 +249,6 @@
       <div class="noise-block">
         <div class="noise-image media-box reveal-scale">
           <img src="https://i.imgur.com/sW1eYjl.jpeg" alt="poster" loading="lazy" />
-          <span class="slot-label">poster</span>
         </div>
         <div class="noise-copy reveal">
           <h2>freetime</h2>
@@ -255,50 +260,42 @@
       </div>
     </section>
 
-    <!-- ===== INTERLUDE GRID (9 slots — randomized) ===== -->
+    <!-- ===== INTERLUDE GRID (9 slots — all unique) ===== -->
     <section>
       <div class="interlude-grid reveal">
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/sfl0dri.png" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 1</span>
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/8cxKOCM.jpeg" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 2</span>
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/UtX3FAd.jpeg" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 3</span>
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/JHfvHaB.jpeg" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 4</span>
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/O6bsbkH.png" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 5</span>
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/5AiMuK4.jpeg" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 6</span>
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/JHfvHaB.jpeg" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/O6bsbkH.png" alt="interlude" loading="lazy" />
+        </div>
+        <div class="interlude-item media-box stagger-item">
+          <img src="https://i.imgur.com/UtX3FAd.jpeg" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/rZX071n.jpeg" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 7</span>
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/FM58C84.png" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 8</span>
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/fMz7QpA.png" alt="interlude" loading="lazy" />
-          <span class="slot-label">interlude 9</span>
         </div>
       </div>
     </section>
 
     <!-- ===== MUSIC ===== -->
     <section id="music" class="music-section">
+      <div class="music-label">spotify</div>
       <div class="music-embed reveal">
         <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">
           listen on spotify →
@@ -309,23 +306,18 @@
       <div class="music-grid">
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/IzErq2Y.jpeg" alt="album" loading="lazy" />
-          <span class="slot-label">album 1</span>
         </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/4ZuAZ69.jpeg" alt="album" loading="lazy" />
-          <span class="slot-label">album 2</span>
         </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/23vLe46.jpeg" alt="album" loading="lazy" />
-          <span class="slot-label">album 3</span>
         </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/MvZuhLd.jpeg" alt="album" loading="lazy" />
-          <span class="slot-label">album 4</span>
         </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/05ZFzMN.jpeg" alt="album" loading="lazy" />
-          <span class="slot-label">album 5</span>
         </div>
       </div>
 
@@ -338,23 +330,18 @@
       <div class="music-grid" style="margin-top:1.5rem;">
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/tMSKR0c.jpeg" alt="track" loading="lazy" />
-          <span class="slot-label">track 1</span>
         </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/cmriB75.jpeg" alt="track" loading="lazy" />
-          <span class="slot-label">track 2</span>
         </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/Wh5AUjB.jpeg" alt="track" loading="lazy" />
-          <span class="slot-label">track 3</span>
         </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/mpugT32.jpeg" alt="track" loading="lazy" />
-          <span class="slot-label">track 4</span>
         </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/rzniRiC.jpeg" alt="track" loading="lazy" />
-          <span class="slot-label">track 5</span>
         </div>
       </div>
     </section>
@@ -414,18 +401,10 @@
         }, { passive: true });
       }
 
+      // external header links — no smooth scroll needed
       document.querySelectorAll('.header-nav a').forEach(link => {
         link.addEventListener('click', function(e) {
-          const targetId = this.getAttribute('href');
-          if (targetId && targetId.startsWith('#')) {
-            const targetEl = document.querySelector(targetId);
-            if (targetEl) {
-              e.preventDefault();
-              const headerHeight = document.querySelector('.header').offsetHeight || 60;
-              const top = targetEl.getBoundingClientRect().top + window.pageYOffset - headerHeight - 20;
-              window.scrollTo({ top, behavior: 'smooth' });
-            }
-          }
+          // let them open normally
         });
       });
 
@@ -448,7 +427,7 @@
       modalOverlay.className = 'modal-overlay';
       modalOverlay.innerHTML = `
         <div class="modal-content">
-          <button class="modal-close" aria-label="Close">✕</button>
+          <button class="modal-close" aria-label="Close">←</button>
           <div class="modal-body"></div>
         </div>
       `;
@@ -506,7 +485,7 @@
         });
       });
 
-      console.log('simulasawala · all Imgur links embedded.');
+      console.log('simulasawala · final build ready.');
     })();
   </script>
 </body>
