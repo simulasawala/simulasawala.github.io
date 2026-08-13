@@ -10,13 +10,11 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="#" />
   <meta property="og:image" content="#" />
-  <!-- Favicon: capital S -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='sans-serif' font-weight='bold'>S</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
   <style>
-    /* ——— RESET & BASE ——— */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html {
       background: #f2ede6;
@@ -27,15 +25,32 @@
       scroll-behavior: smooth;
       scroll-snap-type: y proximity;
     }
-    body { padding-top: 4rem; }
+    body {
+      padding-top: 4rem;
+      position: relative;
+    }
+    /* ——— PAPER TEXTURE OVERLAY ——— */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.055;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='1 0 0 0 0  0 0.98 0 0 0  0 0.95 0 0 0  0 0 0 0.6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='1'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 400px 400px;
+    }
+
     ::selection { background: #1c1a17; color: #f2ede6; }
 
-    /* ——— SCROLLBAR ——— */
     ::-webkit-scrollbar { width: 4px; }
     ::-webkit-scrollbar-track { background: transparent; }
     ::-webkit-scrollbar-thumb { background: #1c1a17; border-radius: 20px; }
 
-    /* ——— HEADER ——— */
     .header {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1rem 2.5rem;
@@ -61,40 +76,30 @@
     .header-nav a:hover { color: #1c1a17; opacity: 1; }
     .header-nav a:hover::after { width: 100%; }
 
-    /* ——— MAIN ——— */
-    .main { max-width: 1400px; margin: 0 auto; padding: 0 2.5rem 4rem; }
+    .main { max-width: 1400px; margin: 0 auto; padding: 0 2.5rem 4rem; position: relative; z-index: 1; }
 
-    /* ——— REVEAL ——— */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal-scale { opacity: 0; transform: scale(0.96); transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1); }
     .reveal-scale.visible { opacity: 1; transform: scale(1); }
-    .stagger-item { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
+    .stagger-item {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    }
     .stagger-item.visible { opacity: 1; transform: translateY(0); }
 
     section, .hero, .silence-about-block, .music-section, .info-section { scroll-snap-align: start; scroll-snap-stop: normal; }
 
-    /* ——— HERO ——— */
     .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 4rem; margin-bottom: 2rem; position: relative; }
     .hero-title-wrap { will-change: transform; transition: transform 0.1s linear; }
     .hero-title { font-size: clamp(4rem, 16vw, 11rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: #1c1a17; overflow-wrap: break-word; hyphens: auto; }
     .hero-meta { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(28, 26, 23, 0.7); margin-top: 1.5rem; }
 
-    /* ——— GLOBAL SLOT LABEL (hidden) ——— */
     .slot-label { display: none; }
-    .media-box {
-      position: relative;
-      overflow: hidden;
-      background: #e3ddd4;
-    }
-    .media-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .media-box { position: relative; overflow: hidden; background: #e3ddd4; }
+    .media-box img { width: 100%; height: auto; display: block; }
 
-    /* ——— SILENCE + ABOUT ——— */
     .silence-about-block {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -112,41 +117,16 @@
       transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
       width: 100%;
     }
-    .silence-about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .silence-about-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .silence-about-image:hover {
       transform: scale(1.02);
       box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
       background: rgba(212, 106, 58, 0.04);
     }
-    .silence-about-text {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      padding: 1rem 0;
-    }
-    .about-label {
-      font-size: 0.65rem;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: rgba(28, 26, 23, 0.5);
-      margin-bottom: 1.5rem;
-    }
-    .about-description {
-      font-size: 1.2rem;
-      font-weight: 300;
-      line-height: 1.6;
-      max-width: 30ch;
-      color: #1c1a17;
-      margin-bottom: 1rem;
-    }
+    .silence-about-text { display: flex; flex-direction: column; justify-content: center; padding: 1rem 0; }
+    .about-label { font-size: 0.65rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(28, 26, 23, 0.5); margin-bottom: 1.5rem; }
+    .about-description { font-size: 1.2rem; font-weight: 300; line-height: 1.6; max-width: 30ch; color: #1c1a17; margin-bottom: 1rem; }
 
-    /* ——— NOISE ——— */
     .noise-block {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -164,75 +144,88 @@
       cursor: pointer;
       transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
     }
-    .noise-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .noise-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .noise-image:hover {
       transform: scale(1.04);
       box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
       background: rgba(212, 106, 58, 0.04);
     }
-    .noise-copy {
+    .noise-copy { display: flex; flex-direction: column; justify-content: flex-start; padding-top: 0.5rem; }
+    .noise-copy h2 { font-size: clamp(3.5rem, 12vw, 7.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-bottom: 0.75rem; }
+    .noise-copy .sub { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(28, 26, 23, 0.7); }
+    .noise-copy .desc { margin-top: 2rem; font-size: 0.9rem; font-weight: 300; max-width: 28ch; color: rgba(28, 26, 23, 0.75); line-height: 1.6; }
+
+    /* ——— INTERLUDE MASONRY — 3 columns ——— */
+    .interlude-section { margin: 6rem 0 2rem; }
+    .interlude-header {
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding-top: 0.5rem;
+      align-items: baseline;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem 2rem;
+      margin-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(28, 26, 23, 0.04);
+      padding-bottom: 1rem;
     }
-    .noise-copy h2 {
-      font-size: clamp(3.5rem, 12vw, 7.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1;
-      margin-bottom: 0.75rem;
-    }
-    .noise-copy .sub {
-      font-size: 0.8rem;
-      font-weight: 300;
+    .interlude-header .label {
+      font-size: 0.6rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: rgba(28, 26, 23, 0.7);
+      letter-spacing: 0.15em;
+      color: rgba(28, 26, 23, 0.5);
     }
-    .noise-copy .desc {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      font-weight: 300;
-      max-width: 28ch;
-      color: rgba(28, 26, 23, 0.75);
-      line-height: 1.6;
+    .interlude-header .label span {
+      font-weight: 400;
+      color: rgba(28, 26, 23, 0.3);
+      margin-left: 0.5rem;
     }
 
-    /* ——— INTERLUDE GRID (8 boxes, 4 columns) ——— */
     .interlude-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.2rem;
-      margin: 6rem 0;
+      column-count: 3;
+      column-gap: 1.5rem;
+      margin: 0 0 1rem;
     }
     .interlude-item {
+      break-inside: avoid;
+      margin-bottom: 1.5rem;
       background: #d9d2c7;
-      aspect-ratio: 4/5;
       overflow: hidden;
       cursor: pointer;
-      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease, background 0.3s;
       position: relative;
+      border-radius: 2px;
     }
-    .interlude-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .interlude-item:hover { transform: scale(1.04); box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05); background: rgba(212, 106, 58, 0.04); }
+    .interlude-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+    .interlude-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 12px 30px rgba(28, 26, 23, 0.08);
+      background: rgba(212, 106, 58, 0.02);
+      z-index: 2;
+    }
+    .interlude-item:hover img { transform: scale(1.02); }
+
+    .interlude-item {
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.4s ease, background 0.3s;
+    }
+    .interlude-item.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
 
     /* ——— MUSIC ——— */
     .music-section { margin-top: 4rem; }
-
-    /* EXACT 4‑COLUMN GRID */
     .music-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 1.8rem;
       margin-top: 0.5rem;
     }
-
     .music-item {
       background: #e8e2d9;
       aspect-ratio: 1/1;
@@ -241,19 +234,13 @@
       cursor: pointer;
       position: relative;
     }
-    .music-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .music-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .music-item:hover {
       transform: scale(1.04);
       box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
       z-index: 2;
       background: rgba(212, 106, 58, 0.04);
     }
-
     .music-embed {
       margin-top: 1.5rem;
       padding: 2rem;
@@ -268,23 +255,9 @@
       border-radius: 4px;
       min-height: 80px;
     }
-    .music-embed a {
-      color: #1c1a17;
-      text-decoration: none;
-      border-bottom: 1.5px solid rgba(28, 26, 23, 0.2);
-      transition: border-color 0.3s;
-    }
+    .music-embed a { color: #1c1a17; text-decoration: none; border-bottom: 1.5px solid rgba(28, 26, 23, 0.2); transition: border-color 0.3s; }
     .music-embed a:hover { border-bottom-color: #1c1a17; }
-
-    /* bigger gap between music sections */
-    .music-label {
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(28, 26, 23, 0.55);
-      margin-bottom: 0.75rem;
-      margin-top: 5rem;
-    }
+    .music-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(28, 26, 23, 0.55); margin-bottom: 0.75rem; margin-top: 5rem; }
     .music-label:first-of-type { margin-top: 0; }
 
     /* ——— FOOTER ——— */
@@ -298,45 +271,12 @@
       align-items: flex-start;
       gap: 3rem;
     }
-    .info-col {
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem; /* increased from 0.4rem for better breathing */
-    }
-    .info-col .label {
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: rgba(28, 26, 23, 0.7);
-    }
-    .info-col p, .info-col a {
-      font-size: 0.9rem;
-      font-weight: 300;
-      color: #1c1a17;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: border-color 0.3s;
-      line-height: 1.6;
-    }
+    .info-col { display: flex; flex-direction: column; gap: 0.9rem; }
+    .info-col .label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(28, 26, 23, 0.7); }
+    .info-col p, .info-col a { font-size: 0.9rem; font-weight: 300; color: #1c1a17; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.3s; line-height: 1.6; }
     .info-col a:hover { border-bottom-color: #1c1a17; }
-    .info-col .copy {
-      font-size: 0.75rem;
-      font-weight: 300;
-      color: rgba(28, 26, 23, 0.7);
-      max-width: 30ch;
-      line-height: 1.6;
-    }
-    .footnote {
-      margin-top: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(28, 26, 23, 0.04);
-      font-size: 0.6rem;
-      font-weight: 300;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(28, 26, 23, 0.5);
-      text-align: left;
-    }
+    .info-col .copy { font-size: 0.75rem; font-weight: 300; color: rgba(28, 26, 23, 0.7); max-width: 30ch; line-height: 1.6; }
+    .footnote { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(28, 26, 23, 0.04); font-size: 0.6rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(28, 26, 23, 0.5); text-align: left; }
 
     /* ——— MODAL ——— */
     .modal-overlay {
@@ -351,7 +291,6 @@
       cursor: default;
     }
     .modal-overlay.active { opacity: 1; visibility: visible; }
-
     .modal-content {
       position: relative;
       display: flex; align-items: center; justify-content: center;
@@ -364,21 +303,8 @@
       will-change: transform;
     }
     .modal-overlay.active .modal-content { transform: scale(1); }
-
-    .modal-content .modal-body {
-      display: flex; align-items: center; justify-content: center;
-      width: 100%; height: 100%;
-    }
-    .modal-content img {
-      max-width: 95vw; max-height: 90vh;
-      width: auto; height: auto;
-      object-fit: contain;
-      display: block;
-      background: #e8e2d9;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
-    }
-
-    /* ——— CLOSE BUTTON (fixed top-left) ——— */
+    .modal-content .modal-body { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; }
+    .modal-content img { max-width: 95vw; max-height: 90vh; width: auto; height: auto; object-fit: contain; display: block; background: #e8e2d9; box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04); }
     .modal-close {
       position: fixed;
       top: 1.5rem;
@@ -397,7 +323,6 @@
     }
     .modal-close:hover { opacity: 1; }
 
-    /* ——— BACK‑TO‑TOP ——— */
     .back-to-top {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 90;
       width: 44px; height: 44px;
@@ -420,41 +345,32 @@
     .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
     .back-to-top:hover { background: rgba(28, 26, 23, 0.12); transform: scale(1.05); }
 
-    /* ——— RESPONSIVE ——— */
     @media (max-width: 900px) {
       .header { padding: 1rem 1.5rem; }
       .main { padding: 0 1.5rem 3rem; }
-      .silence-about-block {
-        grid-template-columns: 1fr;
-        gap: 2.5rem;
-        min-height: auto;
-      }
+      .silence-about-block { grid-template-columns: 1fr; gap: 2.5rem; min-height: auto; }
       .silence-about-text { padding: 0; }
       .noise-block { grid-template-columns: 1fr; gap: 2.5rem; }
-      .interlude-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .interlude-grid { column-count: 2; column-gap: 1rem; }
+      .interlude-item { margin-bottom: 1rem; }
       .hero { min-height: 60vh; padding-bottom: 2rem; }
       .info-section { flex-direction: column; gap: 2rem; }
-
-      /* music: 2 columns on tablet */
       .music-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
       .music-label { margin-top: 3.5rem; }
-
       .modal-content img { max-width: 95vw; max-height: 85vh; }
       .modal-close { top: 1rem; left: 1rem; font-size: 1.4rem; }
       .back-to-top { bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; font-size: 1.1rem; }
     }
     @media (max-width: 600px) {
       .header-nav { gap: 1rem; font-size: 0.7rem; }
-      .interlude-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+      .interlude-grid { column-count: 1; column-gap: 0; }
+      .interlude-item { margin-bottom: 0.8rem; }
       .hero-title { font-size: clamp(3.2rem, 22vw, 5rem); }
       .noise-copy h2 { font-size: clamp(2.8rem, 15vw, 4.5rem); }
       .hero-meta { font-size: 0.7rem; }
       .about-description { font-size: 1rem; }
-
-      /* music: 2 columns on mobile */
-      .music-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .music-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
       .music-label { margin-top: 2.5rem; }
-
       .modal-content img { max-width: 98vw; max-height: 80vh; }
       .modal-close { top: 0.8rem; left: 0.8rem; font-size: 1.2rem; }
       .back-to-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 1rem; }
@@ -484,7 +400,7 @@
       <div class="hero-meta">bacolod / ongoing archive</div>
     </section>
 
-    <!-- ===== SILENCE + ABOUT ===== -->
+    <!-- SILENCE + ABOUT -->
     <section>
       <div class="silence-about-block reveal">
         <div class="silence-about-image media-box reveal-scale">
@@ -497,7 +413,7 @@
       </div>
     </section>
 
-    <!-- ===== NOISE ===== -->
+    <!-- NOISE -->
     <section>
       <div class="noise-block">
         <div class="noise-image media-box reveal-scale">
@@ -513,40 +429,17 @@
       </div>
     </section>
 
-    <!-- ===== INTERLUDE GRID (8 boxes) ===== -->
-    <section>
-      <div class="interlude-grid reveal">
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/0vL7gTt.png" alt="interlude" loading="lazy" />
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/8cxKOCM.jpeg" alt="interlude" loading="lazy" />
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/5AiMuK4.jpeg" alt="interlude" loading="lazy" />
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/JHfvHaB.jpeg" alt="interlude" loading="lazy" />
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/jEI8gsI.png" alt="interlude" loading="lazy" />
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/rZX071n.jpeg" alt="interlude" loading="lazy" />
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/b39HrO6.jpeg" alt="interlude" loading="lazy" />
-        </div>
-        <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/7GG4BD2.jpeg" alt="interlude" loading="lazy" />
-        </div>
+    <!-- INTERLUDE — 38 images, one grid -->
+    <section class="interlude-section">
+      <div class="interlude-header reveal">
+        <div class="label">interlude <span>— 38 fragments</span></div>
       </div>
+      <div id="interludeGrid" class="interlude-grid reveal"></div>
     </section>
 
-    <!-- ===== MUSIC ===== -->
+    <!-- MUSIC -->
     <section id="music" class="music-section">
 
-      <!-- SPOTIFY -->
       <div class="music-label">spotify</div>
       <div class="music-embed reveal">
         <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">
@@ -570,7 +463,6 @@
         </div>
       </div>
 
-      <!-- SOUNDCLOUD -->
       <div class="music-label">soundcloud</div>
       <div class="music-embed reveal">
         <a href="https://soundcloud.com/jinjiiiiii" target="_blank" rel="noopener noreferrer">
@@ -594,7 +486,6 @@
         </div>
       </div>
 
-      <!-- APPLE MUSIC -->
       <div class="music-label">apple music</div>
       <div class="music-embed reveal">
         <a href="https://music.apple.com/ph/album/simulasawala/1779891947" target="_blank" rel="noopener noreferrer">
@@ -614,15 +505,13 @@
           <img src="https://i.imgur.com/oCKrsB0.png" alt="single" loading="lazy" />
         </div>
         <div class="music-item media-box stagger-item">
-          <!-- moved from Spotify albums -->
           <img src="https://i.imgur.com/IzErq2Y.jpeg" alt="single" loading="lazy" />
         </div>
-        <!-- REMOVED: https://i.imgur.com/1PnBJSI.png -->
       </div>
 
     </section>
 
-    <!-- ===== INFO ===== -->
+    <!-- INFO -->
     <section id="info" class="info-section">
       <div class="info-col reveal">
         <span class="label">about</span>
@@ -648,21 +537,93 @@
     (function() {
       'use strict';
 
-      // ——— INTERSECTION OBSERVER ———
-      const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .stagger-item');
+      // ——— ALL 38 INTERLUDE IMAGES ———
+      const allImages = [
+        'https://i.imgur.com/0vL7gTt.png',
+        'https://i.imgur.com/8cxKOCM.jpeg',
+        'https://i.imgur.com/5AiMuK4.jpeg',
+        'https://i.imgur.com/JHfvHaB.jpeg',
+        'https://i.imgur.com/jEI8gsI.png',
+        'https://i.imgur.com/rZX071n.jpeg',
+        'https://i.imgur.com/b39HrO6.jpeg',
+        'https://i.imgur.com/7GG4BD2.jpeg',
+        'https://i.imgur.com/VwXhlec.jpeg',
+        'https://i.imgur.com/AT4OeV7.jpeg',
+        'https://i.imgur.com/R1ZlM5h.jpeg',
+        'https://i.imgur.com/zc7MRRi.jpeg',
+        'https://i.imgur.com/CLaLLCe.jpeg',
+        'https://i.imgur.com/t2KyLJs.png',
+        'https://i.imgur.com/QPdEfpz.jpeg',
+        'https://i.imgur.com/FC1q4Cs.jpeg',
+        'https://i.imgur.com/fMfNMaD.jpeg',
+        'https://i.imgur.com/KTAy7in.jpeg',
+        'https://i.imgur.com/yp37yE4.jpeg',
+        'https://i.imgur.com/0O0wbKU.jpeg',
+        'https://i.imgur.com/7orJd8s.jpeg',
+        'https://i.imgur.com/K82FwaX.jpeg',
+        'https://i.imgur.com/RiD8JeE.jpeg',
+        'https://i.imgur.com/oCHLzTd.jpeg',
+        'https://i.imgur.com/NTmmyKb.jpeg',
+        'https://i.imgur.com/XRJBVOJ.jpeg',
+        'https://i.imgur.com/05YPW29.jpeg',
+        'https://i.imgur.com/NeDfUdm.png',
+        'https://i.imgur.com/f7C7Quf.jpeg',
+        'https://i.imgur.com/gpmORW9.jpeg',
+        'https://i.imgur.com/VjUJOf9.jpeg',
+        'https://i.imgur.com/uVTLNk7.jpeg',
+        'https://i.imgur.com/ymIPtSm.png',
+        'https://i.imgur.com/ZTtbxh0.jpeg',
+        'https://i.imgur.com/nnIYO4X.jpeg',
+        'https://i.imgur.com/BY2pxR9.jpeg',
+        'https://i.imgur.com/4xIHRHt.jpeg',
+        'https://i.imgur.com/3sjpRVI.jpeg'
+      ];
+
+      // ——— SHUFFLE ———
+      function shuffle(arr) {
+        const a = [...arr];
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+
+      // ——— RENDER ———
+      const container = document.getElementById('interludeGrid');
+      const shuffled = shuffle(allImages);
+      const fragment = document.createDocumentFragment();
+
+      shuffled.forEach((url) => {
+        const div = document.createElement('div');
+        div.className = 'interlude-item media-box stagger-item';
+        const img = document.createElement('img');
+        img.src = url;
+        img.loading = 'lazy';
+        img.alt = 'interlude';
+        div.appendChild(img);
+        fragment.appendChild(div);
+      });
+
+      container.appendChild(fragment);
+
+      // Stagger
+      const items = container.querySelectorAll('.stagger-item');
+      items.forEach((item, index) => {
+        const delay = 0.04 * (index % 16);
+        item.style.transitionDelay = delay + 's';
+        void item.offsetWidth;
+        item.classList.add('visible');
+      });
+
+      // ——— GLOBAL REVEAL ———
+      const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .stagger-item:not(.interlude-item)');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add('visible');
         });
       }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
       revealElements.forEach(el => observer.observe(el));
-
-      // ——— STAGGER ———
-      const staggerItems = document.querySelectorAll('.stagger-item');
-      staggerItems.forEach((item, index) => {
-        const delay = 0.06 * (index % 12);
-        item.style.transitionDelay = delay + 's';
-      });
 
       // ——— HERO PARALLAX ———
       const heroTitle = document.getElementById('heroParallax');
@@ -697,14 +658,10 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      // ——— UNIFIED MODAL ———
+      // ——— MODAL ———
       const modalOverlay = document.createElement('div');
       modalOverlay.className = 'modal-overlay';
-      modalOverlay.innerHTML = `
-        <div class="modal-content">
-          <div class="modal-body"></div>
-        </div>
-      `;
+      modalOverlay.innerHTML = `<div class="modal-content"><div class="modal-body"></div></div>`;
       document.body.appendChild(modalOverlay);
 
       const closeBtn = document.createElement('button');
@@ -739,36 +696,26 @@
         document.body.style.overflow = '';
       }
 
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeModal();
-      });
+      closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeModal(); });
+      modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) closeModal(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
-      modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) closeModal();
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeModal();
-      });
-
-      // ——— ATTACH TO ALL MEDIA BOXES ———
-      const mediaSelectors = [
-        '.silence-about-image',
-        '.noise-image',
-        '.interlude-item',
-        '.music-item'
-      ];
-
-      document.querySelectorAll(mediaSelectors.join(',')).forEach(el => {
-        el.style.cursor = 'pointer';
-        el.addEventListener('click', (e) => {
-          e.stopPropagation();
-          openModal(el);
+      function attachModal() {
+        document.querySelectorAll('.interlude-item, .silence-about-image, .noise-image, .music-item').forEach(el => {
+          if (!el.dataset.modalAttached) {
+            el.style.cursor = 'pointer';
+            el.addEventListener('click', (e) => { e.stopPropagation(); openModal(el); });
+            el.dataset.modalAttached = 'true';
+          }
         });
-      });
+      }
 
-      console.log('simulasawala · final: removed 1PnBJSI, footer spacing increased.');
+      attachModal();
+
+      const mo = new MutationObserver(attachModal);
+      mo.observe(container, { childList: true, subtree: true });
+
+      console.log('simulasawala · warm paper texture added. 38 images, auto-shuffled.');
     })();
   </script>
 </body>
