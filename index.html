@@ -94,7 +94,7 @@
       display: block;
     }
 
-    /* ——— SILENCE + ABOUT (new spread) ——— */
+    /* ——— SILENCE + ABOUT ——— */
     .silence-about-block {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -224,24 +224,119 @@
 
     /* ——— MUSIC ——— */
     .music-section { margin-top: 4rem; }
-    .music-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.8rem; margin-top: 0.5rem; }
-    .music-item { background: #e8e2d9; aspect-ratio: 1/1; overflow: hidden; transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s; cursor: pointer; position: relative; }
-    .music-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .music-item:hover { transform: scale(1.04); box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05); z-index: 2; background: rgba(212, 106, 58, 0.04); }
-    .music-embed { margin-top: 1.5rem; padding: 2rem; background: #e8e2d9; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(28, 26, 23, 0.2); border-radius: 4px; min-height: 80px; }
-    .music-embed a { color: #1c1a17; text-decoration: none; border-bottom: 1.5px solid rgba(28, 26, 23, 0.2); transition: border-color 0.3s; }
+
+    /* EXACT 4‑COLUMN GRID */
+    .music-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.8rem;
+      margin-top: 0.5rem;
+    }
+
+    .music-item {
+      background: #e8e2d9;
+      aspect-ratio: 1/1;
+      overflow: hidden;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+    .music-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .music-item:hover {
+      transform: scale(1.04);
+      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
+      z-index: 2;
+      background: rgba(212, 106, 58, 0.04);
+    }
+
+    .music-embed {
+      margin-top: 1.5rem;
+      padding: 2rem;
+      background: #e8e2d9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(28, 26, 23, 0.2);
+      border-radius: 4px;
+      min-height: 80px;
+    }
+    .music-embed a {
+      color: #1c1a17;
+      text-decoration: none;
+      border-bottom: 1.5px solid rgba(28, 26, 23, 0.2);
+      transition: border-color 0.3s;
+    }
     .music-embed a:hover { border-bottom-color: #1c1a17; }
-    .music-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(28, 26, 23, 0.55); margin-bottom: 1rem; margin-top: 2.5rem; }
+
+    /* bigger gap between music sections */
+    .music-label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(28, 26, 23, 0.55);
+      margin-bottom: 0.75rem;
+      margin-top: 5rem;
+    }
     .music-label:first-of-type { margin-top: 0; }
 
     /* ——— FOOTER ——— */
-    .info-section { margin-top: 6rem; padding-top: 3rem; border-top: 1px solid rgba(28, 26, 23, 0.06); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 3rem; }
-    .info-col { display: flex; flex-direction: column; gap: 0.4rem; }
-    .info-col .label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(28, 26, 23, 0.7); }
-    .info-col p, .info-col a { font-size: 0.9rem; font-weight: 300; color: #1c1a17; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.3s; line-height: 1.6; }
+    .info-section {
+      margin-top: 6rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(28, 26, 23, 0.06);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 3rem;
+    }
+    .info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem; /* increased from 0.4rem for better breathing */
+    }
+    .info-col .label {
+      font-size: 0.6rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(28, 26, 23, 0.7);
+    }
+    .info-col p, .info-col a {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: #1c1a17;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+      line-height: 1.6;
+    }
     .info-col a:hover { border-bottom-color: #1c1a17; }
-    .info-col .copy { font-size: 0.75rem; font-weight: 300; color: rgba(28, 26, 23, 0.7); max-width: 30ch; line-height: 1.6; }
-    .footnote { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid rgba(28, 26, 23, 0.04); font-size: 0.6rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.06em; color: rgba(28, 26, 23, 0.5); text-align: left; }
+    .info-col .copy {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: rgba(28, 26, 23, 0.7);
+      max-width: 30ch;
+      line-height: 1.6;
+    }
+    .footnote {
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(28, 26, 23, 0.04);
+      font-size: 0.6rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: rgba(28, 26, 23, 0.5);
+      text-align: left;
+    }
 
     /* ——— MODAL ——— */
     .modal-overlay {
@@ -283,7 +378,7 @@
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
     }
 
-    /* ——— CLOSE BUTTON (fixed top-left, outside photo) ——— */
+    /* ——— CLOSE BUTTON (fixed top-left) ——— */
     .modal-close {
       position: fixed;
       top: 1.5rem;
@@ -334,14 +429,16 @@
         gap: 2.5rem;
         min-height: auto;
       }
-      .silence-about-text {
-        padding: 0;
-      }
+      .silence-about-text { padding: 0; }
       .noise-block { grid-template-columns: 1fr; gap: 2.5rem; }
       .interlude-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .hero { min-height: 60vh; padding-bottom: 2rem; }
       .info-section { flex-direction: column; gap: 2rem; }
-      .music-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.2rem; }
+
+      /* music: 2 columns on tablet */
+      .music-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
+      .music-label { margin-top: 3.5rem; }
+
       .modal-content img { max-width: 95vw; max-height: 85vh; }
       .modal-close { top: 1rem; left: 1rem; font-size: 1.4rem; }
       .back-to-top { bottom: 1.5rem; right: 1.5rem; width: 40px; height: 40px; font-size: 1.1rem; }
@@ -353,7 +450,11 @@
       .noise-copy h2 { font-size: clamp(2.8rem, 15vw, 4.5rem); }
       .hero-meta { font-size: 0.7rem; }
       .about-description { font-size: 1rem; }
-      .music-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+
+      /* music: 2 columns on mobile */
+      .music-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .music-label { margin-top: 2.5rem; }
+
       .modal-content img { max-width: 98vw; max-height: 80vh; }
       .modal-close { top: 0.8rem; left: 0.8rem; font-size: 1.2rem; }
       .back-to-top { bottom: 1rem; right: 1rem; width: 36px; height: 36px; font-size: 1rem; }
@@ -369,6 +470,7 @@
       <a href="https://www.instagram.com/simulasawala/" target="_blank" rel="noopener noreferrer">instagram</a>
       <a href="https://soundcloud.com/jinjiiiiii" target="_blank" rel="noopener noreferrer">soundcloud</a>
       <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">spotify</a>
+      <a href="https://music.apple.com/ph/album/simulasawala/1779891947" target="_blank" rel="noopener noreferrer">apple music</a>
     </nav>
   </header>
 
@@ -382,11 +484,11 @@
       <div class="hero-meta">bacolod / ongoing archive</div>
     </section>
 
-    <!-- ===== SILENCE + ABOUT (bacolod removed) ===== -->
+    <!-- ===== SILENCE + ABOUT ===== -->
     <section>
       <div class="silence-about-block reveal">
         <div class="silence-about-image media-box reveal-scale">
-          <img src="https://i.imgur.com/SPUfHSU.jpeg" alt="silence" loading="lazy" />
+          <img src="https://i.imgur.com/vSyqS7D.jpeg" alt="silence" loading="lazy" />
         </div>
         <div class="silence-about-text">
           <div class="about-label">about</div>
@@ -411,7 +513,7 @@
       </div>
     </section>
 
-    <!-- ===== INTERLUDE GRID (8 boxes, updated images) ===== -->
+    <!-- ===== INTERLUDE GRID (8 boxes) ===== -->
     <section>
       <div class="interlude-grid reveal">
         <div class="interlude-item media-box stagger-item">
@@ -443,6 +545,8 @@
 
     <!-- ===== MUSIC ===== -->
     <section id="music" class="music-section">
+
+      <!-- SPOTIFY -->
       <div class="music-label">spotify</div>
       <div class="music-embed reveal">
         <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">
@@ -450,11 +554,8 @@
         </a>
       </div>
 
-      <div class="music-label">albums</div>
+      <div class="music-label" style="margin-top:1.5rem;">albums</div>
       <div class="music-grid">
-        <div class="music-item media-box stagger-item">
-          <img src="https://i.imgur.com/IzErq2Y.jpeg" alt="album" loading="lazy" />
-        </div>
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/4ZuAZ69.jpeg" alt="album" loading="lazy" />
         </div>
@@ -469,6 +570,7 @@
         </div>
       </div>
 
+      <!-- SOUNDCLOUD -->
       <div class="music-label">soundcloud</div>
       <div class="music-embed reveal">
         <a href="https://soundcloud.com/jinjiiiiii" target="_blank" rel="noopener noreferrer">
@@ -476,9 +578,8 @@
         </a>
       </div>
 
-      <!-- "tracks" label added here -->
-      <div class="music-label">tracks</div>
-      <div class="music-grid" style="margin-top:1.5rem;">
+      <div class="music-label" style="margin-top:1.5rem;">tracks</div>
+      <div class="music-grid">
         <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/tMSKR0c.jpeg" alt="track" loading="lazy" />
         </div>
@@ -489,12 +590,36 @@
           <img src="https://i.imgur.com/Wh5AUjB.jpeg" alt="track" loading="lazy" />
         </div>
         <div class="music-item media-box stagger-item">
-          <img src="https://i.imgur.com/mpugT32.jpeg" alt="track" loading="lazy" />
-        </div>
-        <div class="music-item media-box stagger-item">
           <img src="https://i.imgur.com/rzniRiC.jpeg" alt="track" loading="lazy" />
         </div>
       </div>
+
+      <!-- APPLE MUSIC -->
+      <div class="music-label">apple music</div>
+      <div class="music-embed reveal">
+        <a href="https://music.apple.com/ph/album/simulasawala/1779891947" target="_blank" rel="noopener noreferrer">
+          listen on apple music →
+        </a>
+      </div>
+
+      <div class="music-label" style="margin-top:1.5rem;">singles</div>
+      <div class="music-grid">
+        <div class="music-item media-box stagger-item">
+          <img src="https://i.imgur.com/9NUvKKC.png" alt="single" loading="lazy" />
+        </div>
+        <div class="music-item media-box stagger-item">
+          <img src="https://i.imgur.com/XkSx6BY.png" alt="single" loading="lazy" />
+        </div>
+        <div class="music-item media-box stagger-item">
+          <img src="https://i.imgur.com/oCKrsB0.png" alt="single" loading="lazy" />
+        </div>
+        <div class="music-item media-box stagger-item">
+          <!-- moved from Spotify albums -->
+          <img src="https://i.imgur.com/IzErq2Y.jpeg" alt="single" loading="lazy" />
+        </div>
+        <!-- REMOVED: https://i.imgur.com/1PnBJSI.png -->
+      </div>
+
     </section>
 
     <!-- ===== INFO ===== -->
@@ -509,6 +634,7 @@
         <a href="https://www.instagram.com/simulasawala/" target="_blank" rel="noopener noreferrer">instagram</a>
         <a href="https://soundcloud.com/jinjiiiiii" target="_blank" rel="noopener noreferrer">soundcloud</a>
         <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">spotify</a>
+        <a href="https://music.apple.com/ph/album/simulasawala/1779891947" target="_blank" rel="noopener noreferrer">apple music</a>
       </div>
     </section>
 
@@ -571,7 +697,7 @@
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
 
-      // ——— UNIFIED MODAL (back arrow, fixed top-left) ———
+      // ——— UNIFIED MODAL ———
       const modalOverlay = document.createElement('div');
       modalOverlay.className = 'modal-overlay';
       modalOverlay.innerHTML = `
@@ -642,7 +768,7 @@
         });
       });
 
-      console.log('simulasawala · final build: about cleaned, tracks label added.');
+      console.log('simulasawala · final: removed 1PnBJSI, footer spacing increased.');
     })();
   </script>
 </body>
