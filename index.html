@@ -1,3 +1,11 @@
+Understood. Here's the final HTML with all changes applied:
+
+- **Silence block redesigned** — now a 2‑column spread above the poster. Left: the silence image (larger, 4:5), Right: an **About** section with the text you provided.
+- **Interlude images** — replaced the 4 specified PNGs with the new ones.
+- **Close button** — remains a `←` arrow in the top‑left corner (fixed position, outside the photo).
+- **Labels** — still hidden.
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,15 +80,15 @@
     .stagger-item { opacity: 0; transform: translateY(20px); transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1); }
     .stagger-item.visible { opacity: 1; transform: translateY(0); }
 
-    section, .hero, .silence-block, .music-section, .info-section { scroll-snap-align: start; scroll-snap-stop: normal; }
+    section, .hero, .silence-about-block, .music-section, .info-section { scroll-snap-align: start; scroll-snap-stop: normal; }
 
     /* ——— HERO ——— */
-    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 4rem; margin-bottom: 4rem; position: relative; }
+    .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 4rem; margin-bottom: 2rem; position: relative; }
     .hero-title-wrap { will-change: transform; transition: transform 0.1s linear; }
     .hero-title { font-size: clamp(4rem, 16vw, 11rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: #1c1a17; overflow-wrap: break-word; hyphens: auto; }
     .hero-meta { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(28, 26, 23, 0.7); margin-top: 1.5rem; }
 
-    /* ——— GLOBAL SLOT LABEL ——— */
+    /* ——— GLOBAL SLOT LABEL (hidden) ——— */
     .slot-label { display: none; }
     .media-box {
       position: relative;
@@ -94,21 +102,120 @@
       display: block;
     }
 
-    /* ——— SILENCE ——— */
-    .silence-block { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 2rem 0; position: relative; }
-    .silence-object { width: 100px; height: 140px; overflow: hidden; transition: box-shadow 0.4s ease; cursor: pointer; background: #e3ddd4; }
-    .silence-object img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .silence-object:hover { box-shadow: 0 20px 40px rgba(28, 26, 23, 0.04); }
+    /* ——— SILENCE + ABOUT (new spread) ——— */
+    .silence-about-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      min-height: 60vh;
+      padding: 1rem 0;
+      margin-bottom: 2rem;
+    }
+    .silence-about-image {
+      background: #e3ddd4;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
+      width: 100%;
+    }
+    .silence-about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .silence-about-image:hover {
+      transform: scale(1.02);
+      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
+      background: rgba(212, 106, 58, 0.04);
+    }
+    .silence-about-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 1rem 0;
+    }
+    .about-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: rgba(28, 26, 23, 0.5);
+      margin-bottom: 1.5rem;
+    }
+    .about-description {
+      font-size: 1.2rem;
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 30ch;
+      color: #1c1a17;
+      margin-bottom: 1rem;
+    }
+    .about-location {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: rgba(28, 26, 23, 0.5);
+    }
 
     /* ——— NOISE ——— */
-    .noise-block { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; min-height: 60vh; padding: 1rem 0; }
-    .noise-image { background: #d9d2c7; aspect-ratio: 4/5; overflow: hidden; width: 100%; cursor: pointer; transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s; }
-    .noise-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .noise-image:hover { transform: scale(1.04); box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05); background: rgba(212, 106, 58, 0.04); }
-    .noise-copy { display: flex; flex-direction: column; justify-content: flex-start; padding-top: 0.5rem; }
-    .noise-copy h2 { font-size: clamp(3.5rem, 12vw, 7.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1; margin-bottom: 0.75rem; }
-    .noise-copy .sub { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(28, 26, 23, 0.7); }
-    .noise-copy .desc { margin-top: 2rem; font-size: 0.9rem; font-weight: 300; max-width: 28ch; color: rgba(28, 26, 23, 0.75); line-height: 1.6; }
+    .noise-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      min-height: 60vh;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+    .noise-image {
+      background: #d9d2c7;
+      aspect-ratio: 4/5;
+      overflow: hidden;
+      width: 100%;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
+    }
+    .noise-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .noise-image:hover {
+      transform: scale(1.04);
+      box-shadow: 0 16px 40px rgba(28, 26, 23, 0.05);
+      background: rgba(212, 106, 58, 0.04);
+    }
+    .noise-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding-top: 0.5rem;
+    }
+    .noise-copy h2 {
+      font-size: clamp(3.5rem, 12vw, 7.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 0.75rem;
+    }
+    .noise-copy .sub {
+      font-size: 0.8rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: rgba(28, 26, 23, 0.7);
+    }
+    .noise-copy .desc {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      font-weight: 300;
+      max-width: 28ch;
+      color: rgba(28, 26, 23, 0.75);
+      line-height: 1.6;
+    }
 
     /* ——— INTERLUDE GRID (8 boxes, 4 columns) ——— */
     .interlude-grid {
@@ -235,10 +342,17 @@
     @media (max-width: 900px) {
       .header { padding: 1rem 1.5rem; }
       .main { padding: 0 1.5rem 3rem; }
+      .silence-about-block {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        min-height: auto;
+      }
+      .silence-about-text {
+        padding: 0;
+      }
       .noise-block { grid-template-columns: 1fr; gap: 2.5rem; }
       .interlude-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
       .hero { min-height: 60vh; padding-bottom: 2rem; }
-      .silence-block { min-height: 50vh; }
       .info-section { flex-direction: column; gap: 2rem; }
       .music-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1.2rem; }
       .modal-content img { max-width: 95vw; max-height: 85vh; }
@@ -249,9 +363,10 @@
       .header-nav { gap: 1rem; font-size: 0.7rem; }
       .interlude-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
       .hero-title { font-size: clamp(3.2rem, 22vw, 5rem); }
-      .silence-object { width: 80px; height: 112px; }
       .noise-copy h2 { font-size: clamp(2.8rem, 15vw, 4.5rem); }
       .hero-meta { font-size: 0.7rem; }
+      .about-description { font-size: 1rem; }
+      .about-location { font-size: 1rem; }
       .music-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
       .modal-content img { max-width: 98vw; max-height: 80vh; }
       .modal-close { top: 0.8rem; left: 0.8rem; font-size: 1.2rem; }
@@ -281,11 +396,16 @@
       <div class="hero-meta">bacolod / ongoing archive</div>
     </section>
 
-    <!-- ===== SILENCE ===== -->
+    <!-- ===== SILENCE + ABOUT (new spread) ===== -->
     <section>
-      <div class="silence-block reveal-scale">
-        <div class="silence-object media-box">
+      <div class="silence-about-block reveal">
+        <div class="silence-about-image media-box reveal-scale">
           <img src="https://i.imgur.com/SPUfHSU.jpeg" alt="silence" loading="lazy" />
+        </div>
+        <div class="silence-about-text">
+          <div class="about-label">about</div>
+          <p class="about-description">simulasawala is an ongoing archive of graphics, photographs, spaces, and music.</p>
+          <p class="about-location">bacolod.</p>
         </div>
       </div>
     </section>
@@ -306,11 +426,11 @@
       </div>
     </section>
 
-    <!-- ===== INTERLUDE GRID (8 boxes, 4 columns, no duplicates) ===== -->
+    <!-- ===== INTERLUDE GRID (8 boxes, updated images) ===== -->
     <section>
       <div class="interlude-grid reveal">
         <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/sfl0dri.png" alt="interlude" loading="lazy" />
+          <img src="https://i.imgur.com/0vL7gTt.png" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/8cxKOCM.jpeg" alt="interlude" loading="lazy" />
@@ -322,16 +442,16 @@
           <img src="https://i.imgur.com/JHfvHaB.jpeg" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/O6bsbkH.png" alt="interlude" loading="lazy" />
+          <img src="https://i.imgur.com/jEI8gsI.png" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
           <img src="https://i.imgur.com/rZX071n.jpeg" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/FM58C84.png" alt="interlude" loading="lazy" />
+          <img src="https://i.imgur.com/b39HrO6.jpeg" alt="interlude" loading="lazy" />
         </div>
         <div class="interlude-item media-box stagger-item">
-          <img src="https://i.imgur.com/fMz7QpA.png" alt="interlude" loading="lazy" />
+          <img src="https://i.imgur.com/7GG4BD2.jpeg" alt="interlude" loading="lazy" />
         </div>
       </div>
     </section>
@@ -447,13 +567,6 @@
         }, { passive: true });
       }
 
-      // ——— SMOOTH NAV (external links only) ———
-      document.querySelectorAll('.header-nav a').forEach(link => {
-        link.addEventListener('click', function(e) {
-          // external links open normally
-        });
-      });
-
       // ——— BACK‑TO‑TOP ———
       const backToTop = document.getElementById('backToTop');
       window.addEventListener('scroll', () => {
@@ -527,7 +640,7 @@
 
       // ——— ATTACH TO ALL MEDIA BOXES ———
       const mediaSelectors = [
-        '.silence-object',
+        '.silence-about-image',
         '.noise-image',
         '.interlude-item',
         '.music-item'
@@ -541,8 +654,9 @@
         });
       });
 
-      console.log('simulasawala · 8 interlude boxes, no duplicates, back arrow top-left fixed.');
+      console.log('simulasawala · final build: silence + about spread, updated interlude images.');
     })();
   </script>
 </body>
 </html>
+```
