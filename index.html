@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>simulasawala</title>
   <meta name="description" content="simulasawala — ongoing archive of graphics, photographs, places, and music. bacolod." />
-  <!-- Open Graph -->
   <meta property="og:title" content="simulasawala" />
   <meta property="og:description" content="ongoing archive — bacolod" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="#" />
   <meta property="og:image" content="#" />
-  <!-- Favicon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>◼</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -229,13 +227,6 @@
       width: 100px;
       height: 140px;
       background: #e3ddd4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.5rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(28, 26, 23, 0.2);
       overflow: hidden;
       transition: box-shadow 0.4s ease;
     }
@@ -262,13 +253,6 @@
     .noise-image {
       background: #d9d2c7;
       aspect-ratio: 4/5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(28, 26, 23, 0.15);
       overflow: hidden;
       width: 100%;
       cursor: pointer;
@@ -324,13 +308,6 @@
       width: 100%;
       aspect-ratio: 21/9;
       background: #d4ccc0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: rgba(28, 26, 23, 0.15);
       overflow: hidden;
     }
     .interlude img {
@@ -409,10 +386,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: rgba(28, 26, 23, 0.15);
       overflow: hidden;
       transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
       cursor: pointer;
@@ -457,14 +430,6 @@
     .music-item {
       background: #e8e2d9;
       aspect-ratio: 1/1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.6rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      color: rgba(28, 26, 23, 0.15);
       overflow: hidden;
       transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.5s ease, background 0.3s;
       cursor: pointer;
@@ -518,7 +483,7 @@
       margin-top: 0;
     }
 
-    /* ——— FOOTER (2 columns + quiet colophon) ——— */
+    /* ——— FOOTER ——— */
     .info-section {
       margin-top: 6rem;
       padding-top: 3rem;
@@ -676,7 +641,7 @@
       transform: scale(1.05);
     }
 
-    /* ——— BACK‑TO‑TOP BUTTON ——— */
+    /* ——— BACK‑TO‑TOP ——— */
     .back-to-top {
       position: fixed;
       bottom: 2rem;
@@ -868,23 +833,21 @@
       <div class="hero-meta">bacolod / ongoing archive</div>
     </section>
 
-    <!-- SILENCE -->
+    <!-- SILENCE — now uses img tag -->
     <section>
       <div class="silence-block reveal-scale">
         <div class="silence-object">
-          <!-- IMG: tiny photograph or object -->
-          photograph
+          <img src="#" alt="photograph" loading="lazy" />
         </div>
       </div>
     </section>
 
-    <!-- NOISE -->
+    <!-- NOISE — image now uses img tag -->
     <section>
       <div class="section-label reveal">noise</div>
       <div class="noise-block">
         <div class="noise-image reveal-scale">
-          <!-- IMG: full-bleed poster -->
-          poster
+          <img src="#" alt="poster" loading="lazy" />
         </div>
         <div class="noise-copy reveal">
           <h2>freetime</h2>
@@ -896,11 +859,10 @@
       </div>
     </section>
 
-    <!-- INTERLUDE -->
+    <!-- INTERLUDE — now uses img tag -->
     <section>
       <div class="interlude reveal">
-        <!-- IMG: full-width city / space / fashion photograph -->
-        photography
+        <img src="#" alt="photography" loading="lazy" />
       </div>
     </section>
 
@@ -951,7 +913,6 @@
     <section id="music" class="music-section">
       <div class="section-label reveal">music</div>
 
-      <!-- Spotify -->
       <div class="music-embed reveal">
         <a href="https://open.spotify.com/artist/6YhoQYTlRcp1IwOexIPG5Z?si=9_DIYxxdTKKSR6jfB6Xq0w" target="_blank" rel="noopener noreferrer">
           listen on spotify →
@@ -966,7 +927,6 @@
         <div class="music-item stagger-item"><img src="#" alt="album" loading="lazy" /></div>
       </div>
 
-      <!-- SoundCloud -->
       <div class="music-label">soundcloud</div>
       <div class="music-embed reveal">
         <a href="https://soundcloud.com/jinjiiiiii" target="_blank" rel="noopener noreferrer">
@@ -1000,7 +960,7 @@
 
   </main>
 
-  <!-- BACK‑TO‑TOP BUTTON -->
+  <!-- BACK‑TO‑TOP -->
   <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
   <script>
@@ -1100,7 +1060,7 @@
         } else {
           const placeholder = document.createElement('div');
           placeholder.className = 'placeholder-text';
-          placeholder.textContent = el.textContent.trim() || 'image';
+          placeholder.textContent = 'image';
           modalBody.appendChild(placeholder);
         }
         modalOverlay.classList.add('active');
