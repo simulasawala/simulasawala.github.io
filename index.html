@@ -94,7 +94,18 @@
 
     .hero { min-height: 80vh; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 4rem; margin-bottom: 2rem; position: relative; }
     .hero-title-wrap { will-change: transform; transition: transform 0.1s linear; }
-    .hero-title { font-size: clamp(4rem, 16vw, 11rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: #1c1a17; overflow-wrap: break-word; hyphens: auto; }
+
+    /* ——— HERO TITLE — FIXED FOR MOBILE ——— */
+    .hero-title {
+      font-size: clamp(3rem, 12vw, 11rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: #1c1a17;
+      overflow-wrap: normal;
+      hyphens: none;
+    }
+
     .hero-meta { font-size: 0.8rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(28, 26, 23, 0.7); margin-top: 1.5rem; }
 
     .slot-label { display: none; }
@@ -333,7 +344,7 @@
       .noise-block { grid-template-columns: 1fr; gap: 2.5rem; }
       .interlude-grid { column-count: 2; column-gap: 1rem; }
       .interlude-item { margin-bottom: 1rem; }
-      .hero { min-height: 60vh; padding-bottom: 2rem; }
+      .hero { min-height: 65vh; padding-bottom: 2rem; }
       .info-section { flex-direction: column; gap: 2rem; }
       .music-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
       .music-label { margin-top: 3.5rem; }
@@ -345,7 +356,8 @@
       .header-nav { gap: 1rem; font-size: 0.7rem; }
       .interlude-grid { column-count: 1; column-gap: 0; }
       .interlude-item { margin-bottom: 0.8rem; }
-      .hero-title { font-size: clamp(3.2rem, 22vw, 5rem); }
+      /* hero stays big on mobile thanks to clamp */
+      .hero { min-height: 60vh; padding-bottom: 1.5rem; }
       .noise-copy h2 { font-size: clamp(2.8rem, 15vw, 4.5rem); }
       .hero-meta { font-size: 0.7rem; }
       .about-description { font-size: 1rem; }
@@ -734,7 +746,7 @@
       }
 
       attachModal();
-      console.log('simulasawala · interlude: fixed shuffled order, no title, mobile-ready.');
+      console.log('simulasawala · hero fixed: editorial scale on mobile.');
     })();
   </script>
 </body>
